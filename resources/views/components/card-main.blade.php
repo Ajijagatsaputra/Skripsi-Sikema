@@ -1,0 +1,125 @@
+<div class="container py-4">
+    <div class="row g-4">
+        {{-- Aktivitas Alumni --}}
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header fw-bold d-flex justify-content-between">
+                    <span>AKTIVITAS ALUMNI TERKINI</span>
+                    <span class="text-muted small">{{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}</span>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>TANGGAL</th>
+                                <th>AKTIVITAS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>15 Mei 2025</td>
+                                <td>Mengisi Kuesioner Tracer Study</td>
+                            </tr>
+                            <tr>
+                                <td>12 Mei 2025</td>
+                                <td>Update Data Alumni</td>
+                            </tr>
+                            <tr>
+                                <td>01 Mei 2025</td>
+                                <td>Berpartisipasi dalam Kegiatan Alumni</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {{-- Status Pengisian Tracer Study --}}
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header fw-bold">STATUS PENGISIAN TRACER STUDY</div>
+                <div class="card-body text-center">
+                    @if ($statusTracer === 'sudah')
+                        <i class="fa fa-check-circle fa-3x text-success mb-3"></i>
+                        <h5 class="fw-bold text-success">Sudah Mengisi</h5>
+                        <p class="text-muted mb-0">Terima kasih telah berpartisipasi dalam tracer study.</p>
+                        <div class="dropdown mt-3">
+                            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Lihat Jawaban
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="{{ route('tracer.showpengguna', Auth::user()->id) }}?tipe=pengguna">Tracer
+                                        Pengguna</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="{{ route('tracer.showstudy', auth()->user()->alumni->id) }}?tipe=tracer">Tracer
+                                        Study</a>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <i class="fa fa-times-circle fa-3x text-danger mb-3"></i>
+                        <h5 class="fw-bold text-danger">Belum Mengisi</h5>
+                        <p class="text-muted mb-2">Silakan lengkapi kuesioner tracer study Anda.</p>
+                        <a href="{{ route('tracer.kuesioner') }}" class="btn btn-outline-success btn-sm">Isi Sekarang</a>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+
+        {{-- Data Rekap Alumni (Bar Chart) --}}
+        <div class="col-lg-12 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header fw-bold">Data Rekap Alumni</div>
+                <div class="card-body">
+                    <canvas id="rekapAlumniChart" style="max-height: 420px; max-width: 100%;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const tahun = @json($tahun);
+    const totalAlumni = @json($alumniData);
+    const totalKuesioner = @json($kuisonerData);
+
+    console.log({ tahun, totalAlumni, totalKuesioner });
+
+    const ctxBar = document.getElementById('rekapAlumniChart').getContext('2d');
+
+    new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: tahun,
+            datasets: [
+                {
+                    label: 'Total Alumni',
+                    data: totalAlumni,
+                    backgroundColor: 'rgba(66,133,244,0.8)'
+                },
+                {
+                    label: 'Mengisi Kuesioner',
+                    data: totalKuesioner,
+                    backgroundColor: 'rgba(0,200,180,0.8)'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
