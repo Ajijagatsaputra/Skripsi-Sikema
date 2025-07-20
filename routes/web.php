@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminTracerController;
+use App\Http\Controllers\ProfileAlumniController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\DosenController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KuesionerAlumni;
 use App\Http\Controllers\KuesionerAlumniController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TracerAlumniController;
 use App\Http\Controllers\TracerStudyController;
 use App\Models\TracerStudy;
@@ -52,23 +54,22 @@ Route::middleware(['auth', 'cekrole:admin,superadmin'])->group(function () {
     Route::get('/api/tahun-akademik', [DosenController::class, 'getTahunAkademik'])->name('api.tahun-akademik');
 });
 
-// ✅ Alumni-only routes
+// Alumni-only routes
 Route::middleware(['auth', 'cekrole:alumni'])->group(function () {
     Route::get('/kuesioner', [KuesionerAlumniController::class, 'index'])->name('tracer.kuesioner');
     Route::post('/kuesioner/store', [KuesionerAlumniController::class, 'store'])->name('tracer.create');
+    Route::get('/kuesioner/edit', [KuesionerAlumniController::class, 'edit'])->name('kuesioner.edit');
+    Route::put('/kuesioner/update/{id}', [KuesionerAlumniController::class, 'update'])->name('kuesioner.update');
+    Route::put('/kuesioner-pengguna/update/{id}', [TracerStudyController::class, 'update'])->name('tracer.kuesioner-pengguna.update');
     Route::get('/kuesioner-pengguna', [TracerStudyController::class, 'index'])->name('tracer.kuesioner-pengguna');
     Route::post('/kuesioner-pengguna/store', [TracerStudyController::class, 'store'])->name('tracer.store');
     Route::get('/tracer-study/form/{id}', [TracerStudyController::class, 'showStudy'])->name('tracer.showstudy');
     Route::get('/tracer-pengguna/form/{id}', [TracerStudyController::class, 'showPengguna'])->name('tracer.showpengguna');
     Route::get('/kuesioner-pengguna/edit/{id}', [TracerStudyController::class, 'edit'])->name('tracer.kuesioner-pengguna.edit');
     Route::put('/kuesioner-pengguna/update/{id}', [TracerStudyController::class, 'update'])->name('tracer.kuesioner-pengguna.update');
-});
-
-// ✅ Routes for authenticated users (admin & alumni)
-Route::middleware('auth')->group(function () {
-    // Route::get('/kuesioner', fn() => view('components.kuesioner'));
-    // Route::get('/kuesioner-pengguna', fn() => view('components.kuesioner-pengguna'));
-    Route::get('/profile', fn() => view('components.profile'));
+    Route::get('/profil', [ProfileAlumniController::class, 'show'])->name('profile');
+    Route::get('/profil/edit', [ProfileAlumniController::class, 'edit'])->name('profile.edit');
+    Route::put('/profil/update', [ProfileAlumniController::class, 'update'])->name('profile.update');
 });
 
 Route::resource('listtracerpengguna', AdminTracerController::class);
@@ -94,3 +95,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/tracer/export', [KuesionerAlumniController::class, 'export'])->name('tracer.export');
     Route::delete('/tracer/{id}', [KuesionerAlumniController::class, 'destroy'])->name('tracer.destroy');
 });
+
+
+

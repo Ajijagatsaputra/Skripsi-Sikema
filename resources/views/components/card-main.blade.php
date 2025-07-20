@@ -1,9 +1,9 @@
 <div class="container py-4">
     <div class="row g-4">
         {{-- Aktivitas Alumni --}}
-        <div class="col-md-6">
-            <div class="card shadow-sm">
-                <div class="card-header fw-bold d-flex justify-content-between">
+        <div class="col-lg-6 col-md-12">
+            <div class="card shadow-sm h-100">
+                <div class="card-header fw-bold d-flex justify-content-between align-items-center">
                     <span>AKTIVITAS ALUMNI TERKINI</span>
                     <span class="text-muted small">{{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}</span>
                 </div>
@@ -35,10 +35,12 @@
         </div>
 
         {{-- Status Pengisian Tracer Study --}}
-        <div class="col-md-6">
-            <div class="card shadow-sm">
-                <div class="card-header fw-bold">STATUS PENGISIAN TRACER STUDY</div>
-                <div class="card-body text-center">
+        <div class="col-lg-6 col-md-12">
+            <div class="card shadow-sm h-100">
+                <div class="card-header fw-bold text-center">
+                    STATUS PENGISIAN TRACER STUDY
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
                     @if ($statusTracer === 'sudah')
                         <i class="fa fa-check-circle fa-3x text-success mb-3"></i>
                         <h5 class="fw-bold text-success">Sudah Mengisi</h5>
@@ -51,13 +53,11 @@
                             <ul class="dropdown-menu">
                                 <li>
                                     <a class="dropdown-item"
-                                        href="{{ route('tracer.showpengguna', Auth::user()->id) }}?tipe=pengguna">Tracer
-                                        Pengguna</a>
+                                        href="{{ route('tracer.showpengguna', Auth::user()->id) }}?tipe=pengguna">Tracer Pengguna</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item"
-                                        href="{{ route('tracer.showstudy', auth()->user()->alumni->id) }}?tipe=tracer">Tracer
-                                        Study</a>
+                                        href="{{ route('tracer.showstudy', auth()->user()->alumni->id) }}?tipe=tracer">Tracer Study</a>
                                 </li>
                             </ul>
                         </div>
@@ -71,13 +71,12 @@
             </div>
         </div>
 
-
         {{-- Data Rekap Alumni (Bar Chart) --}}
-        <div class="col-lg-12 mb-4">
-            <div class="card shadow-sm">
+        <div class="col-12">
+            <div class="card shadow-sm mt-2">
                 <div class="card-header fw-bold">Data Rekap Alumni</div>
                 <div class="card-body">
-                    <canvas id="rekapAlumniChart" style="max-height: 420px; max-width: 100%;"></canvas>
+                    <canvas id="rekapAlumniChart" style="max-height: 420px; width: 100%;"></canvas>
                 </div>
             </div>
         </div>
@@ -92,8 +91,6 @@
     const totalAlumni = @json($alumniData);
     const totalKuesioner = @json($kuisonerData);
 
-    console.log({ tahun, totalAlumni, totalKuesioner });
-
     const ctxBar = document.getElementById('rekapAlumniChart').getContext('2d');
 
     new Chart(ctxBar, {
@@ -104,20 +101,29 @@
                 {
                     label: 'Total Alumni',
                     data: totalAlumni,
-                    backgroundColor: 'rgba(66,133,244,0.8)'
+                    backgroundColor: 'rgba(66, 133, 244, 0.8)'
                 },
                 {
                     label: 'Mengisi Kuesioner',
                     data: totalKuesioner,
-                    backgroundColor: 'rgba(0,200,180,0.8)'
+                    backgroundColor: 'rgba(0, 200, 180, 0.8)'
                 }
             ]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top'
                 }
             }
         }
