@@ -110,12 +110,6 @@ class TracerStudyController extends Controller
         return view('alumni.detail-study', compact('tracer'));
     }
 
-
-
-
-
-
-
     // Menampilkan form edit
     public function edit($id)
     {
@@ -155,8 +149,6 @@ class TracerStudyController extends Controller
 
         return redirect()->route('tracer.kuesioner-pengguna')->with('success', 'Data berhasil diperbarui.');
     }
-
-
     // Menghapus data
     public function destroy($id)
     {

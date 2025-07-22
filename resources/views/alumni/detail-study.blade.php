@@ -14,7 +14,7 @@
             <p class="text-muted mb-3">Menampilkan informasi detail data study</p>
             <div class="d-flex gap-2">
                 <a href="{{ route('home') }}" class="btn btn-outline-secondary">Kembali</a>
-                <a href="{{ route('tracer.kuesioner') }}" class="btn btn-primary">Edit</a>
+                <a href="{{ route('kuesioner.edit') }}" class="btn btn-primary">Edit</a>
             </div>
         </div>
 

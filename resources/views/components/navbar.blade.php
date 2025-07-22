@@ -38,12 +38,12 @@
                                <ul class="nav-main-submenu">
                                    <li class="nav-main-item">
                                        <a class="nav-main-link" href="/kuesioner">
-                                           <span class="nav-main-link-name">Salinan Tracer Study Alumni</span>
+                                           <span class="nav-main-link-name">Tracer Study Alumni</span>
                                        </a>
                                    </li>
                                    <li class="nav-main-item">
                                        <a class="nav-main-link" href="/kuesioner-pengguna">
-                                           <span class="nav-main-link-name">Tracer Pengguna Lulusan</span>
+                                           <span class="nav-main-link-name">Tracer Study Pengguna</span>
                                        </a>
                                    </li>
                                </ul>

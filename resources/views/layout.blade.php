@@ -30,7 +30,7 @@
     <!-- Fonts and OneUI framework -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" id="css-main" href="assets/css/oneui.min.css">
-    
+
 </head>
 
 <body>
@@ -47,7 +47,7 @@
                     <!-- END Logo -->
 
                     <!-- Notifications Dropdown -->
-                    <div class="dropdown d-inline-block me-2">
+                    <div class="dropdown d-inline-block me-2" style="z-index: 1040;">
                         <button type="button" class="btn btn-sm btn-alt-secondary"
                             id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
@@ -91,7 +91,7 @@
                 <!-- Right Section -->
                 <div class="d-flex align-items-center">
                     <!-- User Dropdown -->
-                    <div class="dropdown d-inline-block ms-2">
+                    <div class="dropdown d-inline-block ms-2" style="z-index: 1040;">
                         <button type="button" class="btn btn-sm btn-alt-secondary" id="page-header-user-dropdown"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="rounded" src="assets/media/avatars/avatar10.jpg" alt="Header Avatar"
@@ -109,7 +109,7 @@
                             </div>
                             <div class="p-2">
                                 <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                    href="/profile">
+                                    href="{{ route('profile') }}">
                                     <span class="fs-sm fw-medium">Profile</span>
                                     {{-- <span class="badge rounded-pill bg-primary ms-2">1</span> --}}
                                 </a>
