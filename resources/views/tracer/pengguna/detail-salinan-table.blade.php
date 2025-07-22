@@ -116,7 +116,7 @@
                                 $kompetensiAll = [
                                     'Integritas' => $data->integritas,
                                     'Keahlian Bidang Ilmu' => $data->keahlian,
-                                    'Kemampuan Bahasa Inggris' => $data->kemampuan,
+                                    'Kemampuan Etika' => $data->kemampuan,
                                     'Penguasaan TIK' => $data->penguasaan,
                                     'Komunikasi' => $data->komunikasi,
                                     'Kerja Tim' => $data->kerja_tim,

@@ -445,7 +445,7 @@
                                 <label class="form-label">Penilaian Kompetensi</label>
                                 <div class="row g-4">
                                     <div class="col-md-6">
-                                        <label class="form-label">Bahasa Inggris</label>
+                                        <label class="form-label">Etika</label>
                                         <select name="etika" class="form-select" required>
                                             <option value="" disabled selected>-- Pilih Level --</option>
                                             <option value="sangat_baik">Sangat Baik</option>

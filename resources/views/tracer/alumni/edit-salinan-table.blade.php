@@ -158,7 +158,7 @@
                                     @endphp
                                     <div class="row">
                                         <div class="col-md-4 mb-3">
-                                            <label class="form-label">Bahasa Inggris</label>
+                                            <label class="form-label">Etika</label>
                                             <select name="etika" class="form-select" required>
                                                 @foreach ($opsi_kompetensi as $val => $label)
                                                     <option value="{{ $val }}" {{ old('etika', $data->etika) == $val ? 'selected' : '' }}>{{ $label }}</option>

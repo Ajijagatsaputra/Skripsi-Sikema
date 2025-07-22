@@ -60,16 +60,19 @@ class TracerAlumniController extends Controller
     public function getData()
     {
         if (request()->ajax()) {
-            $alumni = Alumni::with('users')->get();
+            $query = Alumni::with('users');
 
-            return DataTables::of($alumni)
+            if (request()->filled('tahun_angkatan')) {
+                $query->where('tahun_masuk', request('tahun_angkatan'));
+            }
+
+            return DataTables::of($query->get())
                 ->addColumn('nama', function ($row) {
                     return $row->users ? $row->users->name : '-';
                 })
                 ->make(true);
         }
     }
-
     public function show($id)
     {
         $data = TracerStudy::findOrFail($id);
