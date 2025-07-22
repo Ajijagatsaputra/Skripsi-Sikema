@@ -25,5 +25,6 @@ jobs:
           ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
             cd ${{ secrets.APP_PATH }}
             git pull origin main
+            composer install
             sudo systemctl restart nginx
           EOF
