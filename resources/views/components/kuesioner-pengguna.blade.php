@@ -54,7 +54,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Posisi/Jabatan Pekerjaan Alumni</label>
+                                <label class="form-label">Posisi/Jabatan Pekerjaan</label>
                                 <input type="text" name="jabatan" class="form-control"
                                     value="{{ $tracer->jabatan ?? '' }}" required>
                             </div>
@@ -67,7 +67,7 @@
                             <i class="fas fa-star me-2"></i>Survey Kompetensi Lulusan
                         </div>
                         <div class="p-4 row g-4">
-                            @foreach (['integritas', 'keahlian bidang ilmu', 'kemampuan', 'penguasaan teknlogi informasi', 'komunikasi', 'kerjasama tim', 'pengembangan diri'] as $kompetensi)
+                            @foreach (['integritas', 'keahlian', 'kemampuan', 'penguasaan', 'komunikasi', 'kerja_tim', 'pengembangan'] as $kompetensi)
                                 <div class="col-md-6">
                                     <label class="form-label text-capitalize">{{ ucfirst($kompetensi) }}</label>
                                     <select name="{{ $kompetensi }}" class="form-select" required>
