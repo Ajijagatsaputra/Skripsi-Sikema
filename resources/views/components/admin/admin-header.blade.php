@@ -36,8 +36,8 @@
                     </div>
                     <div class="p-2">
 
-                        <a class="dropdown-item d-flex align-items-center justify-content-between"
-                            href="/profileadmin/index">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between {{ request()->routeIs('profileadmin.index') ? 'active' : '' }}"
+                            href="{{ route('profileadmin.index') }}">
                             <span class="fs-sm fw-medium">Profile</span>
                         </a>
                     </div>

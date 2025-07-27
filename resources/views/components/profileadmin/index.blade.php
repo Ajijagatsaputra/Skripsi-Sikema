@@ -1,289 +1,196 @@
 @extends('layouts.admin')
 
 @section('content')
-    <!-- Main Container -->
-    <main id="main-container">
-        <!-- Hero -->
-        <div class="bg-image" style="background-image: url('assets/media/photos/photo10@2x.jpg');">
-            <div class="bg-primary-dark-op">
-                <div class="content content-full text-center">
-                    <div class="my-3">
-                        <img class="img-avatar img-avatar-thumb" src="assets/media/avatars/avatar13.jpg" alt="">
+    <div class="container-fluid py-4 mb-4">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10">
+                <div class="card shadow-sm rounded">
+                    <div class="card-header bg-white border-bottom">
+                        <h5 class="mb-0">👤 Edit Profil Admin</h5>
                     </div>
-                    <h1 class="h2 text-white mb-0">Edit Account</h1>
-                    <h2 class="h4 fw-normal text-white-75">
-                        John Parker
-                    </h2>
-                    <a class="btn btn-alt-secondary" href="be_pages_generic_profile.html">
-                        <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Profile
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- END Hero -->
+                    <div class="card-body">
+                        {{-- Flash Message --}}
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        @endif
 
-        <!-- Page Content -->
-        <div class="content content-boxed">
-            <!-- User Profile -->
-            <div class="block block-rounded">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">User Profile</h3>
-                </div>
-                <div class="block-content">
-                    <form action="be_pages_projects_edit.html" method="POST" enctype="multipart/form-data"
-                        onsubmit="return false;">
-                        <div class="row push">
-                            <div class="col-lg-4">
-                                <p class="fs-sm text-muted">
-                                    Your account’s vital info. Your username will be publicly visible.
-                                </p>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                            <div class="col-lg-8 col-xl-5">
-                                <div class="mb-4">
-                                    <label class="form-label" for="one-profile-edit-username">Username</label>
-                                    <input type="text" class="form-control" id="one-profile-edit-username"
-                                        name="one-profile-edit-username" placeholder="Enter your username.."
-                                        value="john.parker">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="one-profile-edit-name">Name</label>
-                                    <input type="text" class="form-control" id="one-profile-edit-name"
-                                        name="one-profile-edit-name" placeholder="Enter your name.." value="John Parker">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="one-profile-edit-email">Email Address</label>
-                                    <input type="email" class="form-control" id="one-profile-edit-email"
-                                        name="one-profile-edit-email" placeholder="Enter your email.."
-                                        value="john.parker@example.com">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Your Avatar</label>
-                                    <div class="mb-4">
-                                        <img class="img-avatar" src="assets/media/avatars/avatar13.jpg" alt="">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="one-profile-edit-avatar" class="form-label">Choose a new
-                                            avatar</label>
-                                        <input class="form-control" type="file" id="one-profile-edit-avatar">
-                                    </div>
-                                </div>
-                                <div class="mb-4">
-                                    <button type="submit" class="btn btn-alt-primary">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- END User Profile -->
+                        @endif
 
-            <!-- Change Password -->
-            <div class="block block-rounded">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">Change Password</h3>
-                </div>
-                <div class="block-content">
-                    <form action="be_pages_projects_edit.html" method="POST" onsubmit="return false;">
-                        <div class="row push">
-                            <div class="col-lg-4">
-                                <p class="fs-sm text-muted">
-                                    Changing your sign in password is an easy way to keep your account secure.
-                                </p>
-                            </div>
-                            <div class="col-lg-8 col-xl-5">
-                                <div class="mb-4">
-                                    <label class="form-label" for="one-profile-edit-password">Current Password</label>
-                                    <input type="password" class="form-control" id="one-profile-edit-password"
-                                        name="one-profile-edit-password">
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-12">
-                                        <label class="form-label" for="one-profile-edit-password-new">New
-                                            Password</label>
-                                        <input type="password" class="form-control" id="one-profile-edit-password-new"
-                                            name="one-profile-edit-password-new">
-                                    </div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-12">
-                                        <label class="form-label" for="one-profile-edit-password-new-confirm">Confirm
-                                            New Password</label>
-                                        <input type="password" class="form-control"
-                                            id="one-profile-edit-password-new-confirm"
-                                            name="one-profile-edit-password-new-confirm">
-                                    </div>
-                                </div>
-                                <div class="mb-4">
-                                    <button type="submit" class="btn btn-alt-primary">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- END Change Password -->
+                        <form action="{{ route('profileadmin.update') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
 
-            <!-- Billing Information -->
-            <div class="block block-rounded">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">Billing Information</h3>
-                </div>
-                <div class="block-content">
-                    <form action="be_pages_projects_edit.html" method="POST" onsubmit="return false;">
-                        <div class="row push">
-                            <div class="col-lg-4">
-                                <p class="fs-sm text-muted">
-                                    Your billing information is never shown to other users and only used for creating
-                                    your invoices.
-                                </p>
-                            </div>
-                            <div class="col-lg-8 col-xl-5">
-                                <div class="mb-4">
-                                    <label class="form-label" for="one-profile-edit-company-name">Company Name
-                                        (Optional)</label>
-                                    <input type="text" class="form-control" id="one-profile-edit-company-name"
-                                        name="one-profile-edit-company-name">
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-6">
-                                        <label class="form-label" for="one-profile-edit-firstname">Firstname</label>
-                                        <input type="text" class="form-control" id="one-profile-edit-firstname"
-                                            name="one-profile-edit-firstname">
-                                    </div>
-                                    <div class="col-6">
-                                        <label class="form-label" for="one-profile-edit-lastname">Lastname</label>
-                                        <input type="text" class="form-control" id="one-profile-edit-lastname"
-                                            name="one-profile-edit-lastname">
+                            <div class="row g-4">
+                                <!-- Avatar -->
+                                <div class="col-md-3 text-center border-end">
+                                    @if ($admin->avatar)
+                                        <img src="{{ asset('storage/' . $admin->avatar) }}"
+                                            class="img-thumbnail rounded-circle mb-2" width="120" height="120"
+                                            alt="Foto Admin">
+                                    @else
+                                        <img src="{{ asset('assets/media/avatars/avatar13.jpg') }}"
+                                            class="img-thumbnail rounded-circle mb-2" width="120" height="120"
+                                            alt="Foto Admin">
+                                    @endif
+                                    <div class="mb-3">
+                                        <label for="avatar" class="form-label small">Ganti Foto</label>
+                                        <input class="form-control form-control-sm @error('avatar') is-invalid @enderror"
+                                            type="file" id="avatar" name="avatar">
+                                        @error('avatar')
+                                            <div class="text-danger small">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="one-profile-edit-street-1">Street Address
-                                        1</label>
-                                    <input type="text" class="form-control" id="one-profile-edit-street-1"
-                                        name="one-profile-edit-street-1">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="one-profile-edit-street-2">Street Address
-                                        2</label>
-                                    <input type="text" class="form-control" id="one-profile-edit-street-2"
-                                        name="one-profile-edit-street-2">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="one-profile-edit-city">City</label>
-                                    <input type="text" class="form-control" id="one-profile-edit-city"
-                                        name="one-profile-edit-city">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="one-profile-edit-postal">Postal code</label>
-                                    <input type="text" class="form-control" id="one-profile-edit-postal"
-                                        name="one-profile-edit-postal">
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="one-profile-edit-vat">VAT Number</label>
-                                    <input type="text" class="form-control" id="one-profile-edit-vat"
-                                        name="one-profile-edit-vat" value="IT00000000" disabled>
-                                </div>
-                                <div class="mb-4">
-                                    <button type="submit" class="btn btn-alt-primary">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- END Billing Information -->
 
-            <!-- Connections -->
-            <div class="block block-rounded">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">Connections</h3>
-                </div>
-                <div class="block-content">
-                    <div class="row push">
-                        <div class="col-lg-4">
-                            <p class="fs-sm text-muted">
-                                You can connect your account to third party networks to get extra features.
-                            </p>
-                        </div>
-                        <div class="col-lg-8 col-xl-7">
-                            <div class="row mb-4">
-                                <div class="col-sm-10 col-md-8 col-xl-6">
-                                    <a class="btn w-100 btn-alt-danger text-start" href="javascript:void(0)">
-                                        <i class="fab fa-fw fa-google opacity-50 me-1"></i> Connect to Google
-                                    </a>
+                                <!-- Data Profil -->
+                                <div class="col-md-9">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="username" class="form-label">Username</label>
+                                            <input type="text" name="username" id="username"
+                                                class="form-control @error('username') is-invalid @enderror"
+                                                value="{{ old('username', $admin->username) }}">
+                                            @error('username')
+                                                <div class="text-danger small">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="name" class="form-label">Nama Lengkap</label>
+                                            <input type="text" name="name" id="name"
+                                                class="form-control @error('name') is-invalid @enderror"
+                                                value="{{ old('name', $admin->name) }}">
+                                            @error('name')
+                                                <div class="text-danger small">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" name="email" id="email"
+                                            class="form-control @error('email') is-invalid @enderror"
+                                            value="{{ old('email', $admin->email) }}">
+                                        @error('email')
+                                            <div class="text-danger small">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <button type="submit" class="btn btn-primary rounded-pill">
+                                            <i class="fas fa-save me-1"></i> Simpan Perubahan
+                                        </button>
+
+                                        <a href="{{ route('admin.dashboard') }}"
+                                            class="btn btn-outline-secondary btn-sm rounded-pill">
+                                            <i class="fas fa-arrow-left me-1"></i> Kembali
+                                        </a>
+
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row mb-4">
-                                <div class="col-sm-10 col-md-8 col-xl-6">
-                                    <a class="btn w-100 btn-alt-info text-start" href="javascript:void(0)">
-                                        <i class="fab fa-fw fa-twitter opacity-50 me-1"></i> Connect to Twitter
-                                    </a>
+                        </form>
+
+                        <hr class="my-5">
+
+                        <!-- Ganti Password -->
+                        <h5 class="mb-3">🔒 Ganti Password</h5>
+                        <form action="{{ route('profileadmin.update-password') }}" method="POST">
+                            @csrf
+                            @method('PUT')
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="current_password" class="form-label">Password Lama</label>
+                                    <input type="password" name="current_password" id="current_password"
+                                        class="form-control @error('current_password') is-invalid @enderror">
+                                    @error('current_password')
+                                        <div class="text-danger small">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="new_password" class="form-label">Password Baru</label>
+                                    <input type="password" name="new_password" id="new_password"
+                                        class="form-control @error('new_password') is-invalid @enderror">
+                                    @error('new_password')
+                                        <div class="text-danger small">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="row mb-4">
-                                <div class="col-sm-10 col-md-8 col-xl-6">
-                                    <a class="btn w-100 btn-alt-primary bg-white d-flex align-items-center justify-content-between"
-                                        href="javascript:void(0)">
-                                        <span>
-                                            <i class="fab fa-fw fa-facebook me-1"></i> John Doe
-                                        </span>
-                                        <i class="fa fa-fw fa-check me-1"></i>
-                                    </a>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col-xl-6 mt-1 d-md-flex align-items-md-center fs-sm">
-                                    <a class="btn btn-sm btn-alt-secondary rounded-pill" href="javascript:void(0)">
-                                        <i class="fa fa-fw fa-pencil-alt me-1"></i> Edit Facebook Connection
-                                    </a>
-                                </div>
+                            <div class="mb-4">
+                                <label for="new_password_confirmation" class="form-label">Konfirmasi Password Baru</label>
+                                <input type="password" name="new_password_confirmation" id="new_password_confirmation"
+                                    class="form-control">
                             </div>
-                            <div class="row mb-4">
-                                <div class="col-sm-10 col-md-8 col-xl-6">
-                                    <a class="btn w-100 btn-alt-warning bg-white d-flex align-items-center justify-content-between"
-                                        href="javascript:void(0)">
-                                        <span>
-                                            <i class="fab fa-fw fa-instagram me-1"></i> @john_doe
-                                        </span>
-                                        <i class="fa fa-fw fa-check me-1"></i>
-                                    </a>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col-xl-6 mt-1 d-md-flex align-items-md-center fs-sm">
-                                    <a class="btn btn-sm btn-alt-secondary rounded-pill" href="javascript:void(0)">
-                                        <i class="fa fa-fw fa-pencil-alt me-1"></i> Edit Instagram Connection
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+
+                            <button type="submit" class="btn btn-warning rounded-pill">
+                                <i class="fas fa-key me-1"></i> Ubah Password
+                            </button>
+                        </form>
+
                     </div>
                 </div>
             </div>
-            <!-- END Connections -->
         </div>
-        <!-- END Page Content -->
-    </main>
-    <!-- END Main Container -->
-    @push('styles')
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css">
-    @endpush
+    </div>
 
+    <style>
+        .container-fluid {
+            min-height: calc(100vh - 140px);
+        }
 
-    <script src="assets/js/oneui.app.min.js"></script>
-    @push('scripts')
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-        </body>
-    @endsection
+        @media (max-width: 768px) {
+            .border-end {
+                border-right: none !important;
+                border-bottom: 1px solid #dee2e6;
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .img-thumbnail {
+            border: 2px solid #dee2e6;
+            transition: all 0.3s ease;
+        }
+
+        .img-thumbnail:hover {
+            border-color: #007bff;
+            transform: scale(1.05);
+        }
+    </style>
+@endsection
+@push('scripts')
+<script>
+    // Auto-adjust layout height
+    document.addEventListener('DOMContentLoaded', function() {
+        function adjustLayout() {
+            const navbar = document.querySelector('.navbar');
+            const footer = document.querySelector('.footer');
+            const container = document.querySelector('.container-fluid');
+
+            if (navbar && footer && container) {
+                const navbarHeight = navbar.offsetHeight;
+                const footerHeight = footer.offsetHeight;
+                const windowHeight = window.innerHeight;
+
+                const minHeight = windowHeight - navbarHeight - footerHeight;
+                container.style.minHeight = minHeight + 'px';
+            }
+        }
+
+        // Adjust on load and resize
+        adjustLayout();
+        window.addEventListener('resize', adjustLayout);
+    });
+</script>
+@endpush

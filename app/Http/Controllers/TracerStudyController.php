@@ -88,7 +88,7 @@ class TracerStudyController extends Controller
             'saran' => $request->saran
         ]);
 
-        return redirect()->back()->with('success', 'Data berhasil disimpan.');
+        return redirect()->route('home')->with('success', 'Data berhasil disimpan.');
     }
 
     // Menampilkan detail satu data
@@ -100,6 +100,11 @@ class TracerStudyController extends Controller
     public function showPengguna($id)
     {
         $pengguna = TracerPengguna::where('user_id', $id)->first(); // atau ->get() jika banyak
+
+        if (!$pengguna) {
+            // Belum isi -> lempar ke form create
+            return redirect()->route('tracer.kuesioner-pengguna');
+        }
 
         return view('alumni.detail-pengguna', compact('pengguna'));
     }

@@ -46,11 +46,24 @@
                                     <div class="mb-3">
                                         <label class="form-label">Program Studi</label>
                                         <select name="prodi" class="form-control">
-                                            <option value="teknik_informatika">Teknik Informatika</option>
-                                            <option value="sistem_informasi">Sistem Informasi</option>
-                                            <option value="manajemen">Manajemen</option>
-                                            <option value="akuntansi">Akuntansi</option>
+                                            <option value="teknik_informatika"
+                                                {{ old('prodi', $data->prodi ?? '') == 'teknik_informatika' ? 'selected' : '' }}>
+                                                Teknik Informatika
+                                            </option>
+                                            <option value="sistem_informasi"
+                                                {{ old('prodi', $data->prodi ?? '') == 'sistem_informasi' ? 'selected' : '' }}>
+                                                Sistem Informasi
+                                            </option>
+                                            <option value="manajemen"
+                                                {{ old('prodi', $data->prodi ?? '') == 'manajemen' ? 'selected' : '' }}>
+                                                Manajemen
+                                            </option>
+                                            <option value="akuntansi"
+                                                {{ old('prodi', $data->prodi ?? '') == 'akuntansi' ? 'selected' : '' }}>
+                                                Akuntansi
+                                            </option>
                                         </select>
+
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Alamat</label>

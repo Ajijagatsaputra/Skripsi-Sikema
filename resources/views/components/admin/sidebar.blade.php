@@ -2,7 +2,7 @@
     <!-- Side Header -->
     <div class="content-header">
         <!-- Logo -->
-        <a class="fw-semibold text-dual" href="index.html">
+        <a class="fw-semibold text-dual" href="/">
             <span class="smini-visible">
                 <i class="fa fa-circle-notch text-primary"></i>
             </span>

@@ -261,8 +261,8 @@
                                         <li><a href="/listtraceralumni/${data.id}/edit" class="dropdown-item">
                                             <i class="fa fa-edit text-warning me-2"></i> Edit</a></li>
                                         ${userRole === 'admin' ? `
-                                                    <li><a href="#" class="dropdown-item btn-delete" data-id="${data.id}">
-                                                        <i class="fa fa-trash-alt text-danger me-2"></i> Hapus</a></li>` : ''}
+                                                        <li><a href="#" class="dropdown-item btn-delete" data-id="${data.id}">
+                                                            <i class="fa fa-trash-alt text-danger me-2"></i> Hapus</a></li>` : ''}
                                     </ul>
                                 </div>`;
                         }
@@ -355,9 +355,17 @@
                 $('#modalDetail').modal('show');
             });
 
-            // Hapus data
+            // Setup CSRF token untuk semua AJAX request
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // Event delete
             $('#datatable').on('click', '.btn-delete', function() {
                 const id = $(this).data('id');
+
                 Swal.fire({
                     title: 'Yakin ingin menghapus?',
                     text: 'Data tidak bisa dikembalikan setelah dihapus!',
@@ -370,20 +378,40 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: `/listtraceralumni/${id}`,
+                            url: `/listtraceralumni/${id}`, // pastikan ini sesuai route
                             type: 'DELETE',
+                            dataType: 'json',
                             success: function(res) {
-                                table.ajax.reload();
-                                Swal.fire('Terhapus!', res.message, 'success');
+                                // Reload DataTable
+                                $('#datatable').DataTable().ajax.reload();
+
+                                // Notifikasi sukses
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Terhapus!',
+                                    text: res.message,
+                                    timer: 2000,
+                                    showConfirmButton: false
+                                });
                             },
-                            error: function() {
-                                Swal.fire('Gagal', 'Tidak dapat menghapus data.',
-                                    'error');
+                            error: function(xhr, status, error) {
+                                // Cek respons error
+                                console.error(xhr.responseText);
+
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Gagal!',
+                                    text: 'Tidak dapat menghapus data.',
+                                    footer: xhr.status == 419 ?
+                                        'Session CSRF Expired. Refresh halaman!' :
+                                        ''
+                                });
                             }
                         });
                     }
                 });
             });
+
         });
     </script>
 

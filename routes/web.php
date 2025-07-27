@@ -17,6 +17,7 @@ use App\Models\TracerStudy;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileAdminController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
@@ -39,11 +40,13 @@ Route::middleware(['auth', 'cekrole:admin,superadmin'])->group(function () {
         ]);
         $count = count($response->json()['data']);
         return view('admin.admin-dashboard', compact('count'));
-    });
+    })->name('admin.dashboard');
 
-    Route::get('/profileadmin/index', function () {
-        return view('components.profileadmin.index');
-    })->name('profileadmin.index');
+
+    Route::get('/profileadmin/index', [ProfileAdminController::class, 'edit'])->name('profileadmin.index');
+    Route::put('/profileadmin/update', [ProfileAdminController::class, 'update'])->name('profileadmin.update');
+    Route::put('/profileadmin/password', [ProfileAdminController::class, 'updatePassword'])->name('profileadmin.update-password');
+
     Route::get('/listmahasiswa', fn() => view('mahasiswa.table-mahasiswa'));
     Route::get('/listdosen', fn() => view('dosen.table-dosen'));
     Route::get('/listalumni', fn() => view('alumni.table-alumni'));
