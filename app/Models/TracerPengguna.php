@@ -88,4 +88,5 @@ class TracerPengguna extends Model
     {
         return $query->whereYear('created_at', $year);
     }
+
 }

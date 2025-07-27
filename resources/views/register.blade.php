@@ -172,7 +172,7 @@
                         <div class="invalid-feedback">NIM wajib diisi.</div>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Tahun Angkatan" name="tahun_angkatan" id="tahun_angkatan" required>
+                        <input type="text" class="form-control" placeholder="Tahun Angkatan Masuk" name="tahun_angkatan" id="tahun_angkatan" required>
                         <div class="invalid-feedback">Tahun Angkatan wajib diisi.</div>
                     </div>
 

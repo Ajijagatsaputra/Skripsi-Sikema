@@ -15,19 +15,25 @@ class TracerAlumniController extends Controller
         $totalAlumni = Alumni::count();
 
         // Total yang sudah mengisi TracerStudy
-        // Asumsi: alumni_id adalah foreign key ke Alumni
         $sudahMengisi = TracerStudy::distinct('id_alumni')->count('id_alumni');
 
         // Yang belum mengisi = total - sudah mengisi
         $belumMengisi = $totalAlumni - $sudahMengisi;
 
         if (request()->ajax()) {
-            // Ambil data tracer study beserta relasi alumni dan users
-            $tracer = TracerStudy::with('alumni.users')->get();
+            // Ambil query TracerStudy dengan relasi alumni dan users
+            $tracer = TracerStudy::with('alumni.users');
 
-            // Total alumni (misal primary key-nya 'id')
+            // Filter status pekerjaan jika ada
+            if (request()->has('status') && request()->status !== '') {
+                $status = strtolower(request()->status);
+                $tracer->whereRaw('LOWER(bekerja) LIKE ?', ["%$status%"]);
+            }
 
+            // Ambil hasil akhir
+            $tracer = $tracer->get();
 
+            // Kembalikan data untuk DataTables
             return DataTables::of($tracer)
                 ->addColumn('nama_alumni', function ($row) {
                     return $row->alumni && $row->alumni->users
@@ -35,26 +41,27 @@ class TracerAlumniController extends Controller
                         : '-';
                 })
                 ->addColumn('relevansi_pekerjaan', function ($row) {
-                    return $row->relevansi_name; // <-- Ini hasil accessor!
+                    return $row->relevansi_name;
                 })
                 ->addColumn('action', function ($row) {
                     $editUrl = route('listtraceralumni.edit', $row->id);
                     $deleteUrl = route('listtraceralumni.destroy', $row->id);
                     return '
-                        <a href="' . $editUrl . '" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
-                        <form action="' . $deleteUrl . '" method="POST" style="display:inline-block;" onsubmit="return confirm(\'Yakin ingin hapus?\')">
-                            ' . csrf_field() . method_field('DELETE') . '
-                            <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-                        </form>
-                    ';
+                    <a href="' . $editUrl . '" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                    <form action="' . $deleteUrl . '" method="POST" style="display:inline-block;" onsubmit="return confirm(\'Yakin ingin hapus?\')">
+                        ' . csrf_field() . method_field('DELETE') . '
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                    </form>
+                ';
                 })
-
                 ->rawColumns(['action'])
                 ->make(true);
         }
 
+        // Return ke view utama jika bukan request Ajax
         return view('tracer.table-salinan-alumni', compact('totalAlumni', 'sudahMengisi', 'belumMengisi'));
     }
+
 
     // Contoh fungsi lain untuk data alumni (jika dibutuhkan)
     public function getData()

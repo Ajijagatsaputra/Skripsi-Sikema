@@ -4,7 +4,7 @@
     <div class="content py-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <h1 class="h3 fw-bold text-dark mb-1">Detail Data Tracer Alumni</h1>
+                <h1 class="h3 fw-bold text-dark mb-1">Detail Data Tracer Pengguna Alumni</h1>
                 <p class="text-muted mb-0">Menampilkan informasi detail tracer study alumni</p>
             </div>
             <div class="d-flex gap-2">

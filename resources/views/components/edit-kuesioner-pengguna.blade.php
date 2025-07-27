@@ -236,7 +236,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Keahlian</label>
+                                        <label class="form-label">Keahlian Bidang Ilmu</label>
                                         <select name="keahlian" class="form-select" required>
                                             <option value="">-- Pilih Level --</option>
                                             @foreach ($opts as $key => $val)
@@ -258,7 +258,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Penguasaan</label>
+                                        <label class="form-label">Penguasaan Teknologi Informasi</label>
                                         <select name="penguasaan" class="form-select" required>
                                             <option value="">-- Pilih Level --</option>
                                             @foreach ($opts as $key => $val)
@@ -280,7 +280,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Kerja Tim</label>
+                                        <label class="form-label">Kerjasama Tim</label>
                                         <select name="kerja_tim" class="form-select" required>
                                             <option value="">-- Pilih Level --</option>
                                             @foreach ($opts as $key => $val)
@@ -291,7 +291,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Pengembangan</label>
+                                        <label class="form-label">Pengembangan Diri</label>
                                         <select name="pengembangan" class="form-select" required>
                                             <option value="">-- Pilih Level --</option>
                                             @foreach ($opts as $key => $val)

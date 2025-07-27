@@ -26,7 +26,7 @@
                 </div>
 
                 <!-- Main Content -->
-                <div class="row g-4">
+                <div class="row g-4 mt-1">
                     <!-- Informasi Personal -->
                     <div class="col-lg-6">
                         <div class="card border-0 shadow-sm h-100">
@@ -37,7 +37,7 @@
                                 <div class="row g-3">
                                     @foreach ([
                                         'Nama' => $pengguna->nama,
-                                        'Program Studi' => $pengguna->prodi,
+                                        'Program Studi' => $pengguna->prodi_name,
                                         'Alamat' => $pengguna->alamat,
                                         'Jabatan' => $pengguna->jabatan
                                     ] as $label => $value)
@@ -96,10 +96,10 @@
                                         $kompetensiAll = [
                                             'Integritas' => $pengguna->integritas,
                                             'Keahlian Bidang Ilmu' => $pengguna->keahlian,
-                                            'Kemampuan Etika' => $pengguna->kemampuan,
-                                            'Penguasaan TIK' => $pengguna->penguasaan,
+                                            'Kemampuan' => $pengguna->kemampuan,
+                                            'Penguasaan Teknologi Informasi' => $pengguna->penguasaan,
                                             'Komunikasi' => $pengguna->komunikasi,
-                                            'Kerja Tim' => $pengguna->kerja_tim,
+                                            'Kerjasama Tim' => $pengguna->kerja_tim,
                                             'Pengembangan Diri' => $pengguna->pengembangan,
                                         ];
                                     @endphp

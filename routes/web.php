@@ -41,6 +41,9 @@ Route::middleware(['auth', 'cekrole:admin,superadmin'])->group(function () {
         return view('admin.admin-dashboard', compact('count'));
     });
 
+    Route::get('/profileadmin/index', function () {
+        return view('components.profileadmin.index');
+    })->name('profileadmin.index');
     Route::get('/listmahasiswa', fn() => view('mahasiswa.table-mahasiswa'));
     Route::get('/listdosen', fn() => view('dosen.table-dosen'));
     Route::get('/listalumni', fn() => view('alumni.table-alumni'));
@@ -95,6 +98,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/tracer/export', [KuesionerAlumniController::class, 'export'])->name('tracer.export');
     Route::delete('/tracer/{id}', [KuesionerAlumniController::class, 'destroy'])->name('tracer.destroy');
 });
-
-
-

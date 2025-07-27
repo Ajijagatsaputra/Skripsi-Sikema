@@ -147,7 +147,7 @@ class TracerStudyController extends Controller
 
         $data->update($request->except(['user_id'])); // user_id tidak boleh diedit
 
-        return redirect()->route('tracer.kuesioner-pengguna')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('home')->with('success', 'Data berhasil diperbarui.');
     }
     // Menghapus data
     public function destroy($id)

@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="id">
 @extends('layout')
 
 @section('content')
@@ -8,7 +6,7 @@
     <main id="main-container" class="mt-3">
         <div class="content py-4">
 
-            <!-- HEADER -->
+            <!-- HEADER DETAIL STUDY -->
             <div class="mb-4">
                 <h1 class="h3 fw-bold text-dark mb-1">Detail Data Study</h1>
                 <p class="text-muted mb-3">Menampilkan informasi detail data study</p>
@@ -51,6 +49,16 @@
                         <div class="card-body">
                             <h5 class="fw-bold mb-3">Informasi Pekerjaan</h5>
                             <div class="row row-cols-1 row-cols-md-3 g-4">
+                                @php
+                                    $opsi_relevansi = [
+                                        '' => '-- Pilih tingkat relevansi --',
+                                        'sangat_relevan' => '⭐⭐⭐⭐⭐ Sangat Relevan',
+                                        'relevan' => '⭐⭐⭐⭐ Relevan',
+                                        'cukup' => '⭐⭐⭐ Cukup Relevan',
+                                        'tidak_relevan' => '⭐⭐ Kurang Relevan',
+                                        'sangat_tidak_relevan' => '⭐ Tidak Relevan',
+                                    ];
+                                @endphp
                                 <div class="col">
                                     <div class="small text-muted">Status Bekerja</div>
                                     <div class="fw-medium">Bekerja</div>
@@ -68,8 +76,10 @@
                                     <div class="fw-medium">{{ $tracer->alamat_pekerjaan ?? '-' }}</div>
                                 </div>
                                 <div class="col">
-                                    <div class="small text-muted">Relevansi Pekerjaan</div>
-                                    <div class="fw-medium">{{ $tracer->relevansi_pekerjaan ?? '-' }}</div>
+                                    <div class="small text-muted">Relevansi Pendidikan</div>
+                                    <div class="fw-medium">
+                                        {{ $opsi_relevansi[$tracer->relevansi_pekerjaan ?? ''] ?? '-' }}
+                                    </div>
                                 </div>
                                 <div class="col">
                                     <div class="small text-muted">Gaji</div>
@@ -144,16 +154,7 @@
                                     'tidak_baik' => 'Tidak Baik',
                                 ];
                             @endphp
-                            @php
-                                $opsi_relevansi = [
-                                    '' => '-- Pilih tingkat relevansi --',
-                                    'sangat_relevan' => '⭐⭐⭐⭐⭐ Sangat Relevan',
-                                    'relevan' => '⭐⭐⭐⭐ Relevan',
-                                    'cukup' => '⭐⭐⭐ Cukup Relevan',
-                                    'tidak_relevan' => '⭐⭐ Kurang Relevan',
-                                    'sangat_tidak_relevan' => '⭐ Tidak Relevan',
-                                ];
-                            @endphp
+
                             <div class="col">
                                 <div class="small text-muted">Etika</div>
                                 <div class="fw-medium">{{ $opsi_kompetensi[$tracer->etika] ?? '-' }}</div>
@@ -178,12 +179,7 @@
                                 <div class="small text-muted">Pengembangan Diri</div>
                                 <div class="fw-medium">{{ $opsi_kompetensi[$tracer->pengembangan] ?? '-' }}</div>
                             </div>
-                            <div class="col">
-                                <div class="small text-muted">Relevansi Pendidikan</div>
-                                <div class="fw-medium">
-                                    {{ $opsi_relevansi[$tracer->relevansi_pekerjaan ?? ''] ?? '-' }}
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -234,9 +230,6 @@
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="stylesheet" href="{{ asset('assets/css/oneui.min.css') }}">
-        <script src="{{ asset('assets/js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
+
     </main>
 @endsection
-
-</html>

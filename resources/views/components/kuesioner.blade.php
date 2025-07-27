@@ -1,213 +1,18 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuesioner Tracer Study Alumni</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/media/favicons/logo_phb.png">
-
-    <style>
-        body {
-            background: linear-gradient(135deg, #f9f9fa 0%, #ffffff 100%);
-            min-height: 100vh;
-            padding: 20px 0;
-        }
-
-        .questionnaire-container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .header-section {
-            background: linear-gradient(135deg, #1763a5 0%, #085ddd 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-            position: relative;
-        }
-
-        .header-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx="50%" cy="0%" r="50%"><stop offset="0%" stop-color="white" stop-opacity="0.1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient></defs><rect width="100" height="20" fill="url(%23a)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .header-section h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 1;
-        }
-
-        .header-section p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            margin-bottom: 25px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .section-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .section-header {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-            padding: 20px 25px;
-            font-size: 1.3rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-body {
-            padding: 30px 25px;
-        }
-
-        .form-label {
-            font-weight: 600;
-            color: #495057;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .form-control,
-        .form-select {
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 12px 15px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus,
-        .form-select:focus {
-            border-color: #4facfe;
-            box-shadow: 0 0 0 0.2rem rgba(79, 172, 254, 0.25);
-            transform: translateY(-2px);
-        }
-
-        .form-check-input {
-            margin-top: 0.125rem;
-            transform: scale(1.2);
-        }
-
-        .form-check-label {
-            font-weight: 500;
-            color: #495057;
-            margin-left: 8px;
-        }
-
-        .btn-submit {
-            background: linear-gradient(135deg, #132ad6 0%, #1f12ce 100%);
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: white !important;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(220, 222, 233, 0.3);
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
-            background: linear-gradient(135deg, #4563eb 0%, #667eea 100%);
-            color: white !important;
-        }
-
-        .btn-submit:focus,
-        .btn-submit:active {
-            color: white !important;
-        }
-
-        .radio-group {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .radio-option {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            padding: 12px 20px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .radio-option:hover {
-            border-color: #4facfe;
-            background: rgba(79, 172, 254, 0.1);
-        }
-
-        .radio-option input:checked+label {
-            color: #4facfe;
-            font-weight: 600;
-        }
-
-        .animate-fade-in {
-            animation: fadeIn 0.6s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .progress-bar-custom {
-            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
-            height: 6px;
-            border-radius: 3px;
-        }
-    </style>
-</head>
 @extends('layout')
 
 @section('content')
     @include('components.navbar')
 
+    <!-- Panggil CSS di FolderPublic -->
+   <link rel="stylesheet" href="{{ asset('css/kuesioner-tracer-study.css') }}">
+
     <body>
         @if ($errors->has('error'))
-            <div class="alert alert-danger mt-3">
-                {{ $errors->first('error') }}
+            <div class="container">
+                <div class="alert alert-danger mt-3 animate-fade-in">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    {{ $errors->first('error') }}
+                </div>
             </div>
         @endif
 
@@ -215,23 +20,27 @@
             <div class="questionnaire-container animate-fade-in">
                 <!-- Header -->
                 <div class="header-section">
-                    <i class="fas fa-graduation-cap fa-3x mb-3"></i>
-                    <h1>Tracer Study Tahun 2025 Politeknik Harapan Bersama</h1>
+                    <i class="fas fa-graduation-cap"></i>
+                    <h1>Tracer Study Alumni Tahun 2025</h1>
+                    <h2 style="font-size: 1.8rem; font-weight: 600; margin: 0.5rem 0;">Politeknik Harapan Bersama</h2>
                     <p>Kuesioner untuk mengetahui perkembangan karir dan evaluasi pendidikan alumni</p>
                 </div>
 
                 <div class="p-4">
                     <!-- Progress Bar -->
                     <div class="mb-4">
-                        <div class="progress" style="height: 6px; border-radius: 3px;">
-                            <div class="progress-bar progress-bar-custom" role="progressbar" style="width: 0%"
-                                id="progressBar"></div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <small class="text-muted fw-semibold">Progress Pengisian</small>
+                            <small class="text-primary fw-bold"><span id="progressText">0%</span></small>
                         </div>
-                        <small class="text-muted">Progress: <span id="progressText">0%</span></small>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar progress-bar-custom" role="progressbar" style="width: 0%" id="progressBar"></div>
+                        </div>
                     </div>
 
                     <form id="alumniForm" action="{{ route('tracer.create') }}" method="POST">
                         @csrf
+
                         <!-- Informasi Pribadi -->
                         <div class="section-card animate-fade-in">
                             <div class="section-header">
@@ -255,7 +64,7 @@
                                             Nomor HP/Whatsapp
                                         </label>
                                         <input type="text" name="no_hp" class="form-control"
-                                            value="{{ $alumni->no_hp ?? '' }}" placeholder="+62" required>
+                                            value="{{ $alumni->no_hp ?? '' }}" placeholder="+62812xxxxxxxx" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">
@@ -275,13 +84,14 @@
                                             value="{{ $alumni->tahun_lulus ?? '' }}" placeholder="2023" min="2000"
                                             max="2024" required>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label class="form-label">
-                                            <i class="fas fa-map-marker-alt text-primary"></i> Alamat Lengkap
+                                            <i class="fas fa-map-marker-alt text-primary"></i>
+                                            Alamat Lengkap
                                         </label>
-                                        <input type="alamat" name="alamat" class="form-control"
-                                            value="{{ $alumni->alamat ?? '' }}" placeholder="Desa, Kecamatan, Kabupaten"
-                                            required>
+                                        <textarea name="alamat" class="form-control" rows="3"
+                                            placeholder="Desa, Kecamatan, Kabupaten, Provinsi"
+                                            required>{{ $alumni->alamat ?? '' }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -303,7 +113,7 @@
                                         <input type="radio" name="bekerja" value="ya" id="bekerja_ya"
                                             class="form-check-input" required>
                                         <label for="bekerja_ya" class="form-check-label">
-                                            <i class="fas fa-check-circle text-success"></i>
+                                            <i class="fas fa-briefcase text-success"></i>
                                             Ya, saya bekerja
                                         </label>
                                     </div>
@@ -315,6 +125,7 @@
                                             Wirausaha
                                         </label>
                                     </div>
+
                                     <div class="radio-option">
                                         <input type="radio" name="bekerja" value="tidak" id="bekerja_tidak"
                                             class="form-check-input">
@@ -326,6 +137,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- Detail Wirausaha -->
                         <div class="section-card animate-fade-in" id="detailWirausaha" style="display: none;">
                             <div class="section-header">
@@ -379,18 +191,17 @@
                                             <option value="4000001-999999999">> 4 juta</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label class="form-label">
                                             <i class="fas fa-map-marker-alt text-primary"></i>
                                             Alamat Tempat Usaha
                                         </label>
-                                        <input type="text" name="alamat_usaha" class="form-control"
-                                            placeholder="Alamat lengkap usaha">
+                                        <textarea name="alamat_usaha" class="form-control" rows="3"
+                                            placeholder="Alamat lengkap usaha"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
 
                         <!-- Detail Pekerjaan -->
                         <div class="section-card animate-fade-in" id="detailPekerjaan" style="display: none;">
@@ -430,84 +241,106 @@
                                             Gaji Pertama
                                         </label>
                                         <input type="text" name="gaji" class="form-control"
-                                            placeholder="Rp 5.000.000">
+                                            placeholder="5000000">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="section-card">
+                        <!-- Kompetensi -->
+                        <div class="section-card animate-fade-in">
                             <div class="section-header">
                                 <i class="fas fa-star"></i>
-                                Bandingkan Kompetensi anda Pada SAAT LULUS (yang dikuasai ketika baru lulus)
+                                Penilaian Kompetensi Saat Lulus
                             </div>
                             <div class="section-body">
-                                <label class="form-label">Penilaian Kompetensi</label>
+                                <div class="alert" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.05)); border-left: 4px solid var(--accent-color); color: var(--accent-color);">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    Bandingkan kompetensi Anda pada saat <strong>LULUS</strong> (yang dikuasai ketika baru lulus)
+                                </div>
                                 <div class="row g-4">
                                     <div class="col-md-6">
-                                        <label class="form-label">Etika</label>
+                                        <label class="form-label">
+                                            <i class="fas fa-heart text-primary"></i>
+                                            Etika
+                                        </label>
                                         <select name="etika" class="form-select" required>
                                             <option value="" disabled selected>-- Pilih Level --</option>
-                                            <option value="sangat_baik">Sangat Baik</option>
-                                            <option value="baik">Baik</option>
-                                            <option value="cukup">Cukup</option>
-                                            <option value="kurang_baik">Kurang Baik</option>
-                                            <option value="tidak_baik">Tidak Baik</option>
+                                            <option value="sangat_baik">⭐⭐⭐⭐⭐ Sangat Baik</option>
+                                            <option value="baik">⭐⭐⭐⭐ Baik</option>
+                                            <option value="cukup">⭐⭐⭐ Cukup</option>
+                                            <option value="kurang_baik">⭐⭐ Kurang Baik</option>
+                                            <option value="tidak_baik">⭐ Tidak Baik</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Keahlian</label>
+                                        <label class="form-label">
+                                            <i class="fas fa-tools text-primary"></i>
+                                            Keahlian
+                                        </label>
                                         <select name="keahlian" class="form-select" required>
                                             <option value="" disabled selected>-- Pilih Level --</option>
-                                            <option value="sangat_baik">Sangat Baik</option>
-                                            <option value="baik">Baik</option>
-                                            <option value="cukup">Cukup</option>
-                                            <option value="kurang_baik">Kurang Baik</option>
-                                            <option value="tidak_baik">Tidak Baik</option>
+                                            <option value="sangat_baik">⭐⭐⭐⭐⭐ Sangat Baik</option>
+                                            <option value="baik">⭐⭐⭐⭐ Baik</option>
+                                            <option value="cukup">⭐⭐⭐ Cukup</option>
+                                            <option value="kurang_baik">⭐⭐ Kurang Baik</option>
+                                            <option value="tidak_baik">⭐ Tidak Baik</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Penggunaan Teknologi</label>
+                                        <label class="form-label">
+                                            <i class="fas fa-laptop text-primary"></i>
+                                            Penggunaan Teknologi
+                                        </label>
                                         <select name="penggunaanteknologi" class="form-select" required>
                                             <option value="" disabled selected>-- Pilih Level --</option>
-                                            <option value="sangat_baik">Sangat Baik</option>
-                                            <option value="baik">Baik</option>
-                                            <option value="cukup">Cukup</option>
-                                            <option value="kurang_baik">Kurang Baik</option>
-                                            <option value="tidak_baik">Tidak Baik</option>
+                                            <option value="sangat_baik">⭐⭐⭐⭐⭐ Sangat Baik</option>
+                                            <option value="baik">⭐⭐⭐⭐ Baik</option>
+                                            <option value="cukup">⭐⭐⭐ Cukup</option>
+                                            <option value="kurang_baik">⭐⭐ Kurang Baik</option>
+                                            <option value="tidak_baik">⭐ Tidak Baik</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Kerja Sama Tim</label>
+                                        <label class="form-label">
+                                            <i class="fas fa-users text-primary"></i>
+                                            Kerja Sama Tim
+                                        </label>
                                         <select name="teamwork" class="form-select" required>
                                             <option value="" disabled selected>-- Pilih Level --</option>
-                                            <option value="sangat_baik">Sangat Baik</option>
-                                            <option value="baik">Baik</option>
-                                            <option value="cukup">Cukup</option>
-                                            <option value="kurang_baik">Kurang Baik</option>
-                                            <option value="tidak_baik">Tidak Baik</option>
+                                            <option value="sangat_baik">⭐⭐⭐⭐⭐ Sangat Baik</option>
+                                            <option value="baik">⭐⭐⭐⭐ Baik</option>
+                                            <option value="cukup">⭐⭐⭐ Cukup</option>
+                                            <option value="kurang_baik">⭐⭐ Kurang Baik</option>
+                                            <option value="tidak_baik">⭐ Tidak Baik</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Komunikasi</label>
+                                        <label class="form-label">
+                                            <i class="fas fa-comments text-primary"></i>
+                                            Komunikasi
+                                        </label>
                                         <select name="komunikasi" class="form-select" required>
                                             <option value="" disabled selected>-- Pilih Level --</option>
-                                            <option value="sangat_baik">Sangat Baik</option>
-                                            <option value="baik">Baik</option>
-                                            <option value="cukup">Cukup</option>
-                                            <option value="kurang_baik">Kurang Baik</option>
-                                            <option value="tidak_baik">Tidak Baik</option>
+                                            <option value="sangat_baik">⭐⭐⭐⭐⭐ Sangat Baik</option>
+                                            <option value="baik">⭐⭐⭐⭐ Baik</option>
+                                            <option value="cukup">⭐⭐⭐ Cukup</option>
+                                            <option value="kurang_baik">⭐⭐ Kurang Baik</option>
+                                            <option value="tidak_baik">⭐ Tidak Baik</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Pengembangan Skils</label>
+                                        <label class="form-label">
+                                            <i class="fas fa-chart-line text-primary"></i>
+                                            Pengembangan Skills
+                                        </label>
                                         <select name="pengembangan" class="form-select" required>
                                             <option value="" disabled selected>-- Pilih Level --</option>
-                                            <option value="sangat_baik">Sangat Baik</option>
-                                            <option value="baik">Baik</option>
-                                            <option value="cukup">Cukup</option>
-                                            <option value="kurang_baik">Kurang Baik</option>
-                                            <option value="tidak_baik">Tidak Baik</option>
+                                            <option value="sangat_baik">⭐⭐⭐⭐⭐ Sangat Baik</option>
+                                            <option value="baik">⭐⭐⭐⭐ Baik</option>
+                                            <option value="cukup">⭐⭐⭐ Cukup</option>
+                                            <option value="kurang_baik">⭐⭐ Kurang Baik</option>
+                                            <option value="tidak_baik">⭐ Tidak Baik</option>
                                         </select>
                                     </div>
                                 </div>
@@ -517,7 +350,7 @@
                         <!-- Evaluasi Pendidikan -->
                         <div class="section-card animate-fade-in">
                             <div class="section-header">
-                                <i class="fas fa-star"></i>
+                                <i class="fas fa-graduation-cap"></i>
                                 Evaluasi Pendidikan
                             </div>
                             <div class="section-body">
@@ -539,7 +372,7 @@
                         <!-- Saran -->
                         <div class="section-card animate-fade-in">
                             <div class="section-header">
-                                <i class="fas fa-comments"></i>
+                                <i class="fas fa-lightbulb"></i>
                                 Saran dan Masukan
                             </div>
                             <div class="section-body">
@@ -548,7 +381,7 @@
                                     Berikan saran atau kritik untuk perbaikan kurikulum dan fasilitas kampus
                                 </label>
                                 <textarea name="saran" rows="5" class="form-control"
-                                    placeholder="Tulis saran, kritik, atau masukan Anda di sini untuk membantu kampus menjadi lebih baik..."></textarea>
+                                    placeholder="💡 Tulis saran, kritik, atau masukan Anda di sini untuk membantu kampus menjadi lebih baik..."></textarea>
                             </div>
                         </div>
 
@@ -558,75 +391,226 @@
                                 <i class="fas fa-paper-plane me-2"></i>
                                 Kirim Kuesioner
                             </button>
+                            <div class="mt-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-lock me-1"></i>
+                                    Data Anda akan dijaga kerahasiaannya dan digunakan untuk pengembangan kampus
+                                </small>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
 
+        <!-- Floating Action Button untuk kembali ke atas -->
+        <button id="backToTop" class="btn" style="
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            box-shadow: var(--shadow-lg);
+            display: none;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        " onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
         <script>
-            // Progress tracking
+            // Progress tracking dengan animasi yang lebih smooth
             function updateProgress() {
                 const form = document.getElementById('alumniForm');
-                const inputs = form.querySelectorAll('input[required], select[required]');
-                const detailWirausaha = document.getElementById('detailWirausaha');
+                const requiredInputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+                const visibleRequiredInputs = Array.from(requiredInputs).filter(input => {
+                    const section = input.closest('.section-card');
+                    return !section || section.style.display !== 'none';
+                });
+
                 let filledInputs = 0;
 
-                inputs.forEach(input => {
+                visibleRequiredInputs.forEach(input => {
                     if (input.type === 'radio') {
-                        if (form.querySelector(`input[name="${input.name}"]:checked`)) {
+                        const radioGroup = form.querySelector(`input[name="${input.name}"]:checked`);
+                        if (radioGroup && visibleRequiredInputs.includes(input)) {
                             filledInputs++;
                         }
-
                     } else if (input.value.trim() !== '') {
                         filledInputs++;
                     }
                 });
 
-                const progress = (filledInputs / inputs.length) * 100;
-                document.getElementById('progressBar').style.width = progress + '%';
-                document.getElementById('progressText').textContent = Math.round(progress) + '%';
+                const progress = visibleRequiredInputs.length > 0 ? (filledInputs / visibleRequiredInputs.length) * 100 : 0;
+
+                // Animasi progress bar
+                const progressBar = document.getElementById('progressBar');
+                const progressText = document.getElementById('progressText');
+
+                progressBar.style.width = progress + '%';
+                progressText.textContent = Math.round(progress) + '%';
+
+                // Ubah warna progress berdasarkan persentase
+                if (progress < 33) {
+                    progressBar.style.background = 'linear-gradient(90deg, #ef4444, #f97316)';
+                } else if (progress < 66) {
+                    progressBar.style.background = 'linear-gradient(90deg, #f59e0b, #eab308)';
+                } else {
+                    progressBar.style.background = 'linear-gradient(90deg, #06b6d4, #10b981)';
+                }
             }
 
-            // Show/hide job details based on employment status
+            // Show/hide sections berdasarkan status pekerjaan
             document.querySelectorAll('input[name="bekerja"]').forEach(radio => {
                 radio.addEventListener('change', function() {
                     const detailPekerjaan = document.getElementById('detailPekerjaan');
-                    const detailWirausaha = document.getElementById('detailWirausaha')
+                    const detailWirausaha = document.getElementById('detailWirausaha');
+
+                    // Hide semua section terlebih dahulu
+                    detailPekerjaan.style.display = 'none';
+                    detailWirausaha.style.display = 'none';
+
+                    // Clear required attributes
+                    detailPekerjaan.querySelectorAll('input, select').forEach(el => {
+                        el.removeAttribute('required');
+                        el.value = '';
+                    });
+                    detailWirausaha.querySelectorAll('input, select').forEach(el => {
+                        el.removeAttribute('required');
+                        el.value = '';
+                    });
+
+                    // Show section yang relevan
                     if (this.value === 'ya') {
-                        detailPekerjaan.style.display = 'block';
-                        detailWirausaha.style.display = 'none';
-                        detailPekerjaan.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'nearest'
-                        });
+                        setTimeout(() => {
+                            detailPekerjaan.style.display = 'block';
+                            detailPekerjaan.querySelectorAll('input, select').forEach(el => {
+                                if (el.name === 'nama_perusahaan' || el.name === 'jabatan') {
+                                    el.setAttribute('required', 'required');
+                                }
+                            });
+                            detailPekerjaan.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'nearest'
+                            });
+                        }, 100);
                     } else if (this.value === 'wirausaha') {
-                        detailWirausaha.style.display = 'block';
-                        detailPekerjaan.style.display = 'none';
-                        detailWirausaha.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'nearest'
-                        });
-                    } else {
-                        detailPekerjaan.style.display = 'none';
-                        detailWirausaha.style.display = 'none';
+                        setTimeout(() => {
+                            detailWirausaha.style.display = 'block';
+                            detailWirausaha.querySelectorAll('input, select').forEach(el => {
+                                if (el.name === 'nama_usaha' || el.name === 'posisi_usaha') {
+                                    el.setAttribute('required', 'required');
+                                }
+                            });
+                            detailWirausaha.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'nearest'
+                            });
+                        }, 100);
                     }
+
                     updateProgress();
                 });
             });
 
-            // Update progress on input change
+            // Update progress saat input berubah
             document.addEventListener('input', updateProgress);
             document.addEventListener('change', updateProgress);
 
-            // Form submission
+            // Floating back to top button
+            window.addEventListener('scroll', function() {
+                const backToTop = document.getElementById('backToTop');
+                if (window.pageYOffset > 300) {
+                    backToTop.style.display = 'block';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            });
 
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+
+            // Form submission dengan loading state
+            document.getElementById('alumniForm').addEventListener('submit', function(e) {
+                const submitBtn = document.querySelector('.btn-submit');
+                const originalText = submitBtn.innerHTML;
+
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Mengirim...';
+                submitBtn.disabled = true;
+
+                // Jika ada error, kembalikan button ke state semula
+                setTimeout(() => {
+                    if (submitBtn.disabled) {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }
+                }, 10000);
+            });
+
+            // Animasi fade in untuk section cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe semua section cards
+            document.querySelectorAll('.section-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
 
             // Initialize progress
             updateProgress();
+
+            // Konfirmasi sebelum meninggalkan halaman jika form sudah diisi
+            let formChanged = false;
+            document.addEventListener('input', () => formChanged = true);
+            document.addEventListener('change', () => formChanged = true);
+
+            window.addEventListener('beforeunload', function(e) {
+                if (formChanged) {
+                    e.preventDefault();
+                    e.returnValue = '';
+                }
+            });
+
+            // Remove konfirmasi saat form di-submit
+            document.getElementById('alumniForm').addEventListener('submit', function() {
+                formChanged = false;
+            });
+
+            // Auto-save ke localStorage setiap 30 detik (opsional)
+            setInterval(function() {
+                if (formChanged) {
+                    const formData = new FormData(document.getElementById('alumniForm'));
+                    const data = {};
+                    for (let [key, value] of formData.entries()) {
+                        data[key] = value;
+                    }
+                    // Note: localStorage tidak tersedia di Claude artifacts
+                    // localStorage.setItem('tracer_study_draft', JSON.stringify(data));
+                }
+            }, 30000);
         </script>
     </body>
 @endsection
-
-</html>

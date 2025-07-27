@@ -11,22 +11,22 @@
                     <table class="table table-bordered mb-0">
                         <thead class="table-light">
                             <tr>
-                                <th>TANGGAL</th>
+                                <th>FITUR</th>
                                 <th>AKTIVITAS</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>15 Mei 2025</td>
+                                <td>Kuesioner</td>
                                 <td>Mengisi Kuesioner Tracer Study</td>
                             </tr>
                             <tr>
-                                <td>12 Mei 2025</td>
-                                <td>Update Data Alumni</td>
+                                <td>Data Alumni</td>
+                                <td>Melihat Data Alumni yang Sudah Melakukan Tracer Study</td>
                             </tr>
                             <tr>
-                                <td>01 Mei 2025</td>
-                                <td>Berpartisipasi dalam Kegiatan Alumni</td>
+                                <td>Total Alumni</td>
+                                <td>Melihat Total Alumni yang Sudah Melakukan Tracer Study per Tahun Lulus</td>
                             </tr>
                         </tbody>
                     </table>

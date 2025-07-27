@@ -13,7 +13,7 @@
         @endphp
         @foreach ($stats as $stat)
         <div class="col-12 col-md-4">
-            <div class="card gradient-card text-white border-0 shadow-sm h-100"
+            <div class="card gradient-card text-white border-0 shadow-sm h-100" 
                 style="background: linear-gradient(135deg, {{ $stat['color'] }});">
                 <div class="card-body p-4 d-flex justify-content-between align-items-center">
                     <div>

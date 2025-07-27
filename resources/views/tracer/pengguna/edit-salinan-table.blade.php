@@ -45,8 +45,12 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Program Studi</label>
-                                        <input type="text" name="prodi" class="form-control"
-                                            value="{{ $data->prodi }}">
+                                        <select name="prodi" class="form-control">
+                                            <option value="teknik_informatika">Teknik Informatika</option>
+                                            <option value="sistem_informasi">Sistem Informasi</option>
+                                            <option value="manajemen">Manajemen</option>
+                                            <option value="akuntansi">Akuntansi</option>
+                                        </select>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Alamat</label>
@@ -62,48 +66,99 @@
 
                                 <!-- Survey Kompetensi Lulusan -->
                                 <h5 class="fw-bold mt-4">📊 Survey Kompetensi Lulusan</h5>
+                                @php
+                                    $opsi_kompetensi = [
+                                        'sangat_baik' => 'Sangat Baik',
+                                        'baik' => 'Baik',
+                                        'cukup' => 'Cukup',
+                                        'kurang_baik' => 'Kurang Baik',
+                                        'tidak_baik' => 'Tidak Baik',
+                                    ];
+                                @endphp
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Integritas</label>
-                                            <input type="text" name="integritas" class="form-control"
-                                                value="{{ $data->integritas }}">
+                                            <select name="integritas" class="form-select">
+                                                @foreach ($opsi_kompetensi as $key => $label)
+                                                    <option value="{{ $key }}"
+                                                        {{ $data->integritas === $key ? 'selected' : '' }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Keahlian</label>
-                                            <input type="text" name="keahlian" class="form-control"
-                                                value="{{ $data->keahlian }}">
+                                            <select name="keahlian" class="form-select">
+                                                @foreach ($opsi_kompetensi as $key => $label)
+                                                    <option value="{{ $key }}"
+                                                        {{ $data->keahlian === $key ? 'selected' : '' }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Kemampuan</label>
-                                            <input type="text" name="kemampuan" class="form-control"
-                                                value="{{ $data->kemampuan }}">
+                                            <select name="kemampuan" class="form-select">
+                                                @foreach ($opsi_kompetensi as $key => $label)
+                                                    <option value="{{ $key }}"
+                                                        {{ $data->kemampuan === $key ? 'selected' : '' }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Penguasaan Bidang</label>
-                                            <input type="text" name="penguasaan" class="form-control"
-                                                value="{{ $data->penguasaan }}">
+                                            <select name="penguasaan" class="form-select">
+                                                @foreach ($opsi_kompetensi as $key => $label)
+                                                    <option value="{{ $key }}"
+                                                        {{ $data->penguasaan === $key ? 'selected' : '' }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Komunikasi</label>
-                                            <input type="text" name="komunikasi" class="form-control"
-                                                value="{{ $data->komunikasi }}">
+                                            <select name="komunikasi" class="form-select">
+                                                @foreach ($opsi_kompetensi as $key => $label)
+                                                    <option value="{{ $key }}"
+                                                        {{ $data->komunikasi === $key ? 'selected' : '' }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Kerja Tim</label>
-                                            <input type="text" name="kerja_tim" class="form-control"
-                                                value="{{ $data->kerja_tim }}">
+                                            <select name="kerja_tim" class="form-select">
+                                                @foreach ($opsi_kompetensi as $key => $label)
+                                                    <option value="{{ $key }}"
+                                                        {{ $data->kerja_tim === $key ? 'selected' : '' }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Pengembangan Diri</label>
-                                            <input type="text" name="pengembangan" class="form-control"
-                                                value="{{ $data->pengembangan }}">
+                                            <select name="pengembangan" class="form-select">
+                                                @foreach ($opsi_kompetensi as $key => $label)
+                                                    <option value="{{ $key }}"
+                                                        {{ $data->pengembangan === $key ? 'selected' : '' }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-
 
                                 <!-- Informasi Perusahaan -->
                                 <div class="col-md-6">

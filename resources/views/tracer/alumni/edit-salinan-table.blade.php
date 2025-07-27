@@ -8,7 +8,7 @@
                 <p class="text-muted mb-0">Perbarui data tracer alumni.</p>
             </div>
             <div>
-                <a href="{{ route('listtracerpengguna.index') }}" class="btn btn-secondary">
+                <a href="{{ route('listtraceralumni.index') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Kembali
                 </a>
             </div>

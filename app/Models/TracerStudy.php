@@ -52,10 +52,10 @@ class TracerStudy extends Model
     public function getrelevansiNameAttribute()
     {
         $relevansiNames = [
-            'relevan' => 'relevan',
-            'tidak_relevan' => 'tidak relevan',
-            'sangat_relevan' => 'sangat relevan',
-            'sangat_tidak_relevan' => 'sangat tidak relevan',
+            'relevan' => 'Relevan',
+            'tidak_relevan' => 'Tidak Relevan',
+            'sangat_relevan' => 'Sangat Relevan',
+            'sangat_tidak_relevan' => 'Sangat tidak relevan',
             'cukup' => 'cukup',
         ];
 
