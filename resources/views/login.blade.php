@@ -124,7 +124,7 @@
             <!-- RIGHT Login Form -->
             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
                 <div class="login-box">
-                    <h5 class="fw-bold mb-1">Sistem Informasi Kemahasiswaan</h5>
+                    <h5 class="fw-bold mb-1">Sistem Informasi Kemahasiswaan Tracer Study</h5>
                     <h6 class="mb-3 fw-bold">Politeknik Harapan Bersama</h6>
                     <p class="text-muted mb-4">Akses ke seluruh layanan akademik kampus dengan mudah dan cepat.</p>
 
