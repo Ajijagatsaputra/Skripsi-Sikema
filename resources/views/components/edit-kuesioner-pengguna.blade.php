@@ -8,130 +8,130 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/media/favicons/logo_phb.png">
-   <style>
-    body {
-        background: linear-gradient(135deg, #f0f2f5 0%, #ffffff 100%);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        min-height: 100vh;
-        padding: 20px 0;
-    }
-
-    .questionnaire-container {
-        background: #fff;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
-
-    .header-section {
-        background: linear-gradient(135deg, #1763a5, #085ddd);
-        color: white;
-        padding: 50px 30px;
-        text-align: center;
-    }
-
-    .header-section h1 {
-        font-size: 2.5rem;
-        font-weight: 700;
-    }
-
-    .header-section p {
-        font-size: 1.1rem;
-        opacity: 0.9;
-    }
-
-    .section-card {
-        background: #fff;
-        border-radius: 15px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-        margin-bottom: 30px;
-    }
-
-    .section-header {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        color: white;
-        padding: 20px 30px;
-        font-size: 1.3rem;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .section-body {
-        padding: 25px 30px;
-    }
-
-    .form-label {
-        font-weight: 600;
-        color: #333;
-    }
-
-    .form-control,
-    .form-select {
-        border: 2px solid #e0e0e0;
-        border-radius: 12px;
-        padding: 12px 16px;
-        font-size: 1rem;
-        transition: border-color 0.3s ease;
-    }
-
-    .form-control:focus,
-    .form-select:focus {
-        border-color: #1763a5;
-        box-shadow: none;
-    }
-
-    .btn-primary {
-        background: linear-gradient(135deg, #132ad6 0%, #1f12ce 100%);
-        border: none;
-        padding: 14px 32px;
-        border-radius: 50px;
-        font-size: 1.05rem;
-        font-weight: 600;
-        color: white;
-        transition: all 0.3s ease-in-out;
-    }
-
-    .btn-primary:hover {
-        background: linear-gradient(135deg, #0f25b5, #1a10b2);
-        transform: translateY(-1px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn-outline-secondary {
-        border: 2px solid #ced4da;
-        color: #333;
-        background-color: #fff;
-        padding: 14px 30px;
-        border-radius: 50px;
-        font-size: 1.05rem;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
-
-    .btn-outline-secondary:hover {
-        background-color: #f1f3f5;
-        border-color: #adb5bd;
-        color: #000;
-        transform: translateY(-1px);
-    }
-
-    .text-center .btn i {
-        margin-right: 8px;
-    }
-
-    textarea.form-control {
-        resize: vertical;
-        min-height: 120px;
-    }
-
-    @media (max-width: 768px) {
-        .section-header {
-            font-size: 1.1rem;
+    <style>
+        body {
+            background: linear-gradient(135deg, #f0f2f5 0%, #ffffff 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px 0;
         }
-    }
-</style>
+
+        .questionnaire-container {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #1763a5, #085ddd);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        .header-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .header-section p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .section-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px 30px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-body {
+            padding: 25px 30px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-control,
+        .form-select {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #1763a5;
+            box-shadow: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #132ad6 0%, #1f12ce 100%);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0f25b5, #1a10b2);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline-secondary {
+            border: 2px solid #ced4da;
+            color: #333;
+            background-color: #fff;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #f1f3f5;
+            border-color: #adb5bd;
+            color: #000;
+            transform: translateY(-1px);
+        }
+
+        .text-center .btn i {
+            margin-right: 8px;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        @media (max-width: 768px) {
+            .section-header {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 
 </head>
 
@@ -372,7 +372,7 @@
             </div>
         </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> --}}
         <!-- JS -->
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
