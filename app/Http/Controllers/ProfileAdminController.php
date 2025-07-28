@@ -8,31 +8,22 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileAdminController extends Controller
 {
-    public function edit()
+    public function show()
     {
         $admin = Auth::user();
-        return view('components.profileadmin.index', compact('admin'));
+        return view('components.profileadmin', compact('admin'));
     }
 
     public function update(Request $request)
     {
         $request->validate([
             'username' => 'required|string|max:255',
-            'name'     => 'required|string|max:255',
             'email'    => 'required|email|max:255',
-            'avatar'   => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $admin = Auth::user();
         $admin->username = $request->username;
-        $admin->name     = $request->name;
         $admin->email    = $request->email;
-
-        if ($request->hasFile('avatar')) {
-            $avatarPath = $request->file('avatar')->store('avatars', 'public');
-            $admin->avatar = $avatarPath;
-        }
-
         $admin->save();
 
         return redirect()->route('profileadmin.index')->with('success', 'Profil berhasil diperbarui.');

@@ -22,16 +22,16 @@ use App\Http\Controllers\ProfileAdminController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
-// ✅ Auth
+// Auth
 Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-// ✅ Register (umum)
+// Register (umum)
 Route::get('/register', fn() => view('register'))->name('register');
 Route::post('register', [RegisteredUserController::class, 'store']);
 
-// ✅ Admin-only routes
+// Admin-only routes
 Route::middleware(['auth', 'cekrole:admin,superadmin'])->group(function () {
     Route::get('/admin', function () {
         $response = Http::get('https://api.oase.poltektegal.ac.id/api/web/mahasiswa', [
@@ -43,7 +43,7 @@ Route::middleware(['auth', 'cekrole:admin,superadmin'])->group(function () {
     })->name('admin.dashboard');
 
 
-    Route::get('/profileadmin/index', [ProfileAdminController::class, 'edit'])->name('profileadmin.index');
+    Route::get('/profileadmin/index', [ProfileAdminController::class, 'show'])->name('profileadmin.index');
     Route::put('/profileadmin/update', [ProfileAdminController::class, 'update'])->name('profileadmin.update');
     Route::put('/profileadmin/password', [ProfileAdminController::class, 'updatePassword'])->name('profileadmin.update-password');
 

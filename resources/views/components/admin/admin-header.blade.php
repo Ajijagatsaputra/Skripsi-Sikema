@@ -29,13 +29,12 @@
                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-end p-0 border-0"
                     aria-labelledby="page-header-user-dropdown">
                     <div class="p-3 text-center bg-body-light border-bottom rounded-top">
-                        <img class="img-avatar img-avatar48 img-avatar-thumb" src="assets/media/avatars/avatar10.jpg"
+                        <img class="img-avatar img-avatar48 img-avatar-thumb" src="/assets/media/avatars/avatar10.jpg"
                             alt="">
                         <p class="mt-2 mb-0 fw-medium">{{ Auth::user()->username }}</p>
                         <p class="mb-0 text-muted fs-sm fw-medium">{{ Auth::user()->role }}</p>
                     </div>
                     <div class="p-2">
-
                         <a class="dropdown-item d-flex align-items-center justify-content-between {{ request()->routeIs('profileadmin.index') ? 'active' : '' }}"
                             href="{{ route('profileadmin.index') }}">
                             <span class="fs-sm fw-medium">Profile</span>
