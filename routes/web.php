@@ -47,9 +47,10 @@ Route::middleware(['auth', 'cekrole:admin,superadmin'])->group(function () {
     Route::put('/profileadmin/update', [ProfileAdminController::class, 'update'])->name('profileadmin.update');
     Route::put('/profileadmin/password', [ProfileAdminController::class, 'updatePassword'])->name('profileadmin.update-password');
 
-    Route::get('/listmahasiswa', fn() => view('mahasiswa.table-mahasiswa'));
-    Route::get('/listdosen', fn() => view('dosen.table-dosen'));
-    Route::get('/listalumni', fn() => view('alumni.table-alumni'));
+    Route::get('/listmahasiswa', fn() => view('mahasiswa.table-mahasiswa'))->name('listmahasiswa');
+    Route::get('/listdosen', fn() => view('dosen.table-dosen'))->name('listdosen');
+    Route::get('/listalumni', fn() => view('alumni.table-alumni'))->name('listalumni');
+
     // Route::get('/listhasiltracer', fn() => view('tracer.hasil'));
     Route::get('/listhasiltracer', [HasilTracerController::class, 'index'])->name('tracer.rekap');
 

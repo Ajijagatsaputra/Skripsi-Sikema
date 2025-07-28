@@ -51,24 +51,22 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="listalumni">
+                            <a class="nav-main-link" href="{{ route('listalumni') }}">
                                 <span class="nav-main-link-name">Data Alumni</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="listmahasiswa">
+                            <a class="nav-main-link" href="{{ route('listmahasiswa') }}">
                                 <span class="nav-main-link-name">Data Mahasiswa</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="listdosen">
+                            <a class="nav-main-link" href="{{ route('listdosen') }}">
                                 <span class="nav-main-link-name">Data Dosen</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-
-
                 <li class="nav-main-heading">KELOLA TRACER </li>
                 <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
@@ -78,17 +76,17 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="listtraceralumni">
+                            <a class="nav-main-link" href="{{ route('listtraceralumni.index') }}">
                                 <span class="nav-main-link-name">Alumni</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="listtracerpengguna">
+                            <a class="nav-main-link" href="{{ route('listtracerpengguna.index') }}">
                                 <span class="nav-main-link-name">Pengguna</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link" href="listhasiltracer">
+                            <a class="nav-main-link" href="{{ route('tracer.rekap') }}">
                                 <span class="nav-main-link-name">Hasil</span>
                             </a>
                         </li>

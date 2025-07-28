@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 @include('components.admin.head')
+@stack('scripts')
 
 <body>
     <div id="page-container"

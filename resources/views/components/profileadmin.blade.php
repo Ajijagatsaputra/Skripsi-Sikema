@@ -17,7 +17,7 @@
 
     <div class="content content-boxed">
         {{-- Flash Success Message --}}
-        @if(session('success'))
+        @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
                 {{ session('success') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -25,7 +25,7 @@
         @endif
 
         {{-- Validation Errors --}}
-        @if($errors->any())
+        @if ($errors->any())
             <div class="alert alert-danger mt-3">
                 <ul class="mb-0">
                     @foreach ($errors->all() as $error)
@@ -54,15 +54,13 @@
                         <div class="col-lg-8 col-xl-5">
                             <div class="mb-4">
                                 <label class="form-label" for="username">Username</label>
-                                <input type="text" class="form-control" id="username"
-                                       name="username" placeholder="Enter your username.."
-                                       value="{{ old('username', $admin->username) }}">
+                                <input type="text" class="form-control" id="username" name="username"
+                                    placeholder="Enter your username.." value="{{ old('username', $admin->username) }}">
                             </div>
                             <div class="mb-4">
                                 <label class="form-label" for="email">Email Address</label>
-                                <input type="email" class="form-control" id="email"
-                                       name="email" placeholder="Enter your email.."
-                                       value="{{ old('email', $admin->email) }}">
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Enter your email.." value="{{ old('email', $admin->email) }}">
                             </div>
                             <div class="mb-4">
                                 <button type="submit" class="btn btn-alt-primary">Update Profile</button>
@@ -91,21 +89,45 @@
                             </p>
                         </div>
                         <div class="col-lg-8 col-xl-5">
+                            {{-- Current Password --}}
                             <div class="mb-4">
                                 <label class="form-label" for="current_password">Current Password</label>
-                                <input type="password" class="form-control" id="current_password"
-                                       name="current_password" placeholder="Enter current password..">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="current_password"
+                                        name="current_password" placeholder="Enter current password..">
+                                    <button class="btn btn-outline-secondary toggle-password" type="button"
+                                        onclick="togglePassword('current_password', this)">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                </div>
                             </div>
+
+                            {{-- New Password --}}
                             <div class="mb-4">
                                 <label class="form-label" for="new_password">New Password</label>
-                                <input type="password" class="form-control" id="new_password"
-                                       name="new_password" placeholder="Enter new password..">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="new_password" name="new_password"
+                                        placeholder="Enter new password..">
+                                    <button class="btn btn-outline-secondary toggle-password" type="button"
+                                        onclick="togglePassword('new_password', this)">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                </div>
                             </div>
+
+                            {{-- Confirm New Password --}}
                             <div class="mb-4">
                                 <label class="form-label" for="new_password_confirmation">Confirm New Password</label>
-                                <input type="password" class="form-control" id="new_password_confirmation"
-                                       name="new_password_confirmation" placeholder="Confirm new password..">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="new_password_confirmation"
+                                        name="new_password_confirmation" placeholder="Confirm new password..">
+                                    <button class="btn btn-outline-secondary toggle-password" type="button"
+                                        onclick="togglePassword('new_password_confirmation', this)">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                </div>
                             </div>
+
                             <div class="mb-4">
                                 <button type="submit" class="btn btn-alt-primary">Update Password</button>
                             </div>
@@ -114,6 +136,41 @@
                 </form>
             </div>
         </div>
-        <!-- END Change Password -->
+
+        <!-- Toggle Script -->
+        @push('scripts')
+            <script>
+                function togglePassword(fieldId, btn) {
+                    const input = document.getElementById(fieldId);
+                    const icon = btn.querySelector('i');
+                    if (input.type === "password") {
+                        input.type = "text";
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        input.type = "password";
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                }
+            </script>
+        @endpush
+
+
+        <!-- Toggle Password Visibility Script -->
+        @push('scripts')
+            <script>
+                function togglePassword(fieldId, iconElement) {
+                    const field = document.getElementById(fieldId);
+                    if (field.type === "password") {
+                        field.type = "text";
+                        iconElement.textContent = "🙈"; // icon saat terlihat
+                    } else {
+                        field.type = "password";
+                        iconElement.textContent = "👁️"; // icon saat disembunyikan
+                    }
+                }
+            </script>
+        @endpush
     </div>
 @endsection
