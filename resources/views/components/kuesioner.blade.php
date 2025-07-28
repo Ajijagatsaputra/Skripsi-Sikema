@@ -84,7 +84,7 @@
                                             </label>
                                             <input type="number" name="tahun_lulus" class="form-control"
                                                 value="{{ $alumni->tahun_lulus ?? '' }}" placeholder="2023" min="2000"
-                                                max="2024" required>
+                                                max="2030" required>
                                         </div>
                                         <div class="col-md-12">
                                             <label class="form-label">
