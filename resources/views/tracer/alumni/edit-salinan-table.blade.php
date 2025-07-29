@@ -42,7 +42,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Tahun Lulus</label>
-                                <input type="number" name="tahun_lulus" class="form-control" value="{{ old('tahun_lulus', $data->alumni->tahun_lulus ?? '') }}" min="2000" max="2024" required>
+                                <input type="number" name="tahun_lulus" class="form-control" value="{{ old('tahun_lulus', $data->alumni->tahun_lulus ?? '') }}" min="2000" max="2025" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Alamat</label>

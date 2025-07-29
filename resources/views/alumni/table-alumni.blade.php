@@ -49,6 +49,17 @@
                             <div class="dt-buttons btn-group text-end"></div>
                         </div>
 
+                        <!-- Custom Search -->
+                        <div class="d-flex justify-content-end mb-3">
+                            <div class="input-group" style="max-width: 300px;">
+                                <input type="text" id="customSearch" class="form-control form-control-sm rounded-pill"
+                                    placeholder="Cari alumni...">
+                                <button class="btn btn-sm btn-primary rounded-pill ms-2" id="searchBtn">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+
                         <!-- Table -->
                         <div class="table-responsive rounded-4 border">
                             <table id="tabel-alumni"
@@ -194,42 +205,17 @@
                         return json.data;
                     }
                 },
-                columns: [{
-                        data: 'nim'
-                    },
-                    {
-                        data: 'nama_lengkap'
-                    },
-                    {
-                        data: 'prodi',
-                        className: 'd-none d-sm-table-cell'
-                    },
-                    {
-                        data: 'alamat',
-                        className: 'd-none d-sm-table-cell'
-                    },
-                    {
-                        data: 'kelas'
-                    },
-                    {
-                        data: 'jalur',
-                        className: 'd-none d-sm-table-cell'
-                    },
-                    {
-                        data: 'tahun_masuk',
-                        className: 'd-none d-sm-table-cell'
-                    },
-                    {
-                        data: 'tahun_lulus'
-                    },
-                    {
-                        data: 'status_mahasiswa',
-                        className: 'd-none d-sm-table-cell'
-                    },
-                    {
-                        data: 'no_hp',
-                        className: 'd-none d-sm-table-cell'
-                    },
+                columns: [
+                    { data: 'nim' },
+                    { data: 'nama_lengkap' },
+                    { data: 'prodi', className: 'd-none d-sm-table-cell' },
+                    { data: 'alamat', className: 'd-none d-sm-table-cell' },
+                    { data: 'kelas' },
+                    { data: 'jalur', className: 'd-none d-sm-table-cell' },
+                    { data: 'tahun_masuk', className: 'd-none d-sm-table-cell' },
+                    { data: 'tahun_lulus' },
+                    { data: 'status_mahasiswa', className: 'd-none d-sm-table-cell' },
+                    { data: 'no_hp', className: 'd-none d-sm-table-cell' },
                     {
                         data: null,
                         orderable: false,
@@ -262,6 +248,18 @@
 
             $('#filter-tahun').on('change', function() {
                 initDataTable($(this).val());
+            });
+
+            // Custom Search
+            $('#searchBtn').on('click', function() {
+                let keyword = $('#customSearch').val();
+                table.search(keyword).draw();
+            });
+
+            $('#customSearch').on('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    $('#searchBtn').click();
+                }
             });
 
             $(document).on('click', '.btn-view', function() {
