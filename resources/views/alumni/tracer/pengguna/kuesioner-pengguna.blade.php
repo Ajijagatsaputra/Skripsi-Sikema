@@ -44,14 +44,11 @@
                                     value="{{ $alumni->alamat ?? '' }}" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Program Studi</label>
-                                <select name="prodi" class="form-select" required>
-                                    <option disabled selected>-- Pilih Program Studi --</option>
-                                    <option value="teknik_informatika">Teknik Informatika</option>
-                                    <option value="sistem_informasi">Sistem Informasi</option>
-                                    <option value="manajemen">Manajemen</option>
-                                    <option value="akuntansi">Akuntansi</option>
-                                </select>
+                                <label class="form-label">
+                                    <i class="fas fa-book text-primary"></i> Program Studi
+                                </label>
+                                <input type="text" name="prodi" value="Teknik Informatika" class="form-control"
+                                    readonly>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Posisi/Jabatan Pekerjaan</label>
@@ -86,15 +83,17 @@
                     {{-- SECTION: Penilaian Atasan --}}
                     <div class="section-card mb-4">
                         <div class="section-header">
-                            <i class="fas fa-user-tie me-2"></i>Penilaian Oleh Atasan
+                            <i class="fas fa-user-tie me-2"></i>Penilaian Oleh Atasan Pengguna Lulusan
                         </div>
                         <div class="p-4 row g-4">
-                            <div class="col-md-6"><label class="form-label">Nama Lengkap Atasan / Pengguna Lulusan</label><input type="text"
-                                    name="nama_atasan" class="form-control" required></div>
+                            <div class="col-md-6"><label class="form-label">Nama Lengkap Atasan / Pengguna
+                                    Lulusan</label><input type="text" name="nama_atasan" class="form-control" required>
+                            </div>
                             <div class="col-md-6"><label class="form-label">NIP/NIPY/NIK</label><input type="text"
                                     name="nip_atasan" class="form-control" required></div>
-                            <div class="col-md-6"><label class="form-label">Posisi/Jabatan Atasan</label><input type="text"
-                                    name="posisi_jabatan_atasan" class="form-control" required></div>
+                            <div class="col-md-6"><label class="form-label">Posisi/Jabatan Atasan di
+                                    Perusahaan</label><input type="text" name="posisi_jabatan_atasan"
+                                    class="form-control" required></div>
                             <div class="col-md-6"><label class="form-label">Nama Perusahaan</label><input type="text"
                                     name="nama_perusahaan" class="form-control" required></div>
                             <div class="col-md-12"><label class="form-label">Alamat Perusahaan</label><input type="text"

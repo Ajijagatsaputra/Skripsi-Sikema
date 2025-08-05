@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminTracerController;
+use App\Http\Controllers\AdminTracerPenggunaController;
 use App\Http\Controllers\ProfileAlumniController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -11,14 +11,14 @@ use App\Http\Controllers\KuesionerAlumni;
 use App\Http\Controllers\KuesionerAlumniController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TracerAlumniController;
-use App\Http\Controllers\TracerStudyController;
+use App\Http\Controllers\AdminTracerStudyAlumniController;
+use App\Http\Controllers\KuesionerPenggunaController;
 use App\Models\TracerStudy;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileAdminController;
-
+use App\Http\Controllers\WilayahController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
@@ -47,19 +47,22 @@ Route::middleware(['auth', 'cekrole:admin,superadmin'])->group(function () {
     Route::put('/profileadmin/update', [ProfileAdminController::class, 'update'])->name('profileadmin.update');
     Route::put('/profileadmin/password', [ProfileAdminController::class, 'updatePassword'])->name('profileadmin.update-password');
 
-    Route::get('/listmahasiswa', fn() => view('mahasiswa.table-mahasiswa'))->name('listmahasiswa');
-    Route::get('/listdosen', fn() => view('dosen.table-dosen'))->name('listdosen');
-    Route::get('/listalumni', fn() => view('alumni.table-alumni'))->name('listalumni');
+    Route::get('/listmahasiswa', fn() => view('admin.dataMaster.table-mahasiswa'))->name('listmahasiswa');
+    Route::get('/listdosen', fn() => view('admin.dataMaster.table-dosen'))->name('listdosen');
+    Route::get('/listalumni', fn() => view('admin.dataMaster.table-alumni'))->name('listalumni');
 
     // Route::get('/listhasiltracer', fn() => view('tracer.hasil'));
     Route::get('/listhasiltracer', [HasilTracerController::class, 'index'])->name('tracer.rekap');
 
     // Route::get('/listtraceralumni', [TracerAlumniController::class, 'index'])->name('tracer.index');
     Route::get('/api/mahasiswa', [MahasiswaController::class, 'getData'])->name('api.mahasiswa');
-    Route::get('/api/alumni', [TracerAlumniController::class, 'getData'])->name('api.alumni');
+    Route::get('/api/alumni', [AdminTracerStudyAlumniController::class, 'getData'])->name('api.alumni');
     Route::get('/api/dosen', [DosenController::class, 'getDataDosen'])->name('api.dosen');
     Route::get('/api/tahun-akademik', [DosenController::class, 'getTahunAkademik'])->name('api.tahun-akademik');
 });
+
+//Atasan-only routes
+
 
 // Alumni-only routes
 Route::middleware(['auth', 'cekrole:alumni'])->group(function () {
@@ -67,20 +70,20 @@ Route::middleware(['auth', 'cekrole:alumni'])->group(function () {
     Route::post('/kuesioner/store', [KuesionerAlumniController::class, 'store'])->name('tracer.create');
     Route::get('/kuesioner/edit', [KuesionerAlumniController::class, 'edit'])->name('kuesioner.edit');
     Route::put('/kuesioner/update/{id}', [KuesionerAlumniController::class, 'update'])->name('kuesioner.update');
-    Route::put('/kuesioner-pengguna/update/{id}', [TracerStudyController::class, 'update'])->name('tracer.kuesioner-pengguna.update');
-    Route::get('/kuesioner-pengguna', [TracerStudyController::class, 'index'])->name('tracer.kuesioner-pengguna');
-    Route::post('/kuesioner-pengguna/store', [TracerStudyController::class, 'store'])->name('tracer.store');
-    Route::get('/tracer-study/form/{id}', [TracerStudyController::class, 'showStudy'])->name('tracer.showstudy');
-    Route::get('/tracer-pengguna/form/{id}', [TracerStudyController::class, 'showPengguna'])->name('tracer.showpengguna');
-    Route::get('/kuesioner-pengguna/edit/{id}', [TracerStudyController::class, 'edit'])->name('tracer.kuesioner-pengguna.edit');
-    Route::put('/kuesioner-pengguna/update/{id}', [TracerStudyController::class, 'update'])->name('tracer.kuesioner-pengguna.update');
+    Route::put('/kuesioner-pengguna/update/{id}', [KuesionerPenggunaController::class, 'update'])->name('tracer.kuesioner-pengguna.update');
+    Route::get('/kuesioner-pengguna', [KuesionerPenggunaController::class, 'index'])->name('tracer.kuesioner-pengguna');
+    Route::post('/kuesioner-pengguna/store', [KuesionerPenggunaController::class, 'store'])->name('tracer.store');
+    Route::get('/tracer-study/form/{id}', [KuesionerAlumniController::class, 'showStudy'])->name('tracer.showstudy');
+    Route::get('/tracer-pengguna/form/{id}', [KuesionerPenggunaController::class, 'showPengguna'])->name('tracer.showpengguna');
+    Route::get('/kuesioner-pengguna/edit/{id}', [KuesionerPenggunaController::class, 'edit'])->name('tracer.kuesioner-pengguna.edit');
+    Route::put('/kuesioner-pengguna/update/{id}', [KuesionerPenggunaController::class, 'update'])->name('tracer.kuesioner-pengguna.update');
     Route::get('/profil', [ProfileAlumniController::class, 'show'])->name('profile');
     Route::get('/profil/edit', [ProfileAlumniController::class, 'edit'])->name('profile.edit');
     Route::put('/profil/update', [ProfileAlumniController::class, 'update'])->name('profile.update');
 });
 
-Route::resource('listtracerpengguna', AdminTracerController::class);
-Route::resource('listtraceralumni', TracerAlumniController::class);
+Route::resource('listtracerpengguna', AdminTracerPenggunaController::class);
+Route::resource('listtraceralumni', AdminTracerStudyAlumniController::class);
 
 
 // Authenticated routes
@@ -102,3 +105,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/tracer/export', [KuesionerAlumniController::class, 'export'])->name('tracer.export');
     Route::delete('/tracer/{id}', [KuesionerAlumniController::class, 'destroy'])->name('tracer.destroy');
 });
+
+// API untuk wilayah
+Route::get('/api/provinsi', [WilayahController::class, 'getProvinsi']);
+Route::get('/api/kota/{provinceCode}', [WilayahController::class, 'getKota']);
+
+use App\Http\Controllers\PrediksiController;
+
+Route::match(['get', 'post'], '/prediksi', [PrediksiController::class, 'predictOutcome'])->name('predictOutcome');
+Route::get('/prediksi', [PrediksiController::class, 'showForm'])->name('predictOutcome');
+Route::post('/prediksi', [PrediksiController::class, 'predictOutcome']);    

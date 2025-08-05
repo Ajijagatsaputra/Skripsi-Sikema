@@ -17,7 +17,7 @@ class KuesionerAlumniController extends Controller
         $alumni = Alumni::where('id_users', auth()->user()->id)->first();
         $tracer = $alumni ? TracerStudy::where('id_alumni', $alumni->id)->first() : null;
 
-    return view('components.kuesioner', compact('alumni', 'tracer'));
+    return view('alumni.tracer.study.kuesioner', compact('alumni', 'tracer'));
     }
 
      public function store(Request $request)
@@ -26,6 +26,7 @@ class KuesionerAlumniController extends Controller
             $validated = $request->validate([
                 'nama' => ['required', 'string', 'max:255'],
                 'no_hp' => ['required'],
+                'nim' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'email', 'max:255'],
                 'tahun_lulus' => ['required', 'integer'],
                 'alamat' => ['required', 'string', 'max:255'],
@@ -132,8 +133,6 @@ class KuesionerAlumniController extends Controller
             return back()->withErrors(['error' => 'Gagal menyimpan data: ' . $e->getMessage()]);
         }
     }
-
-
     public function destroy($id)
     {
         $tracer = TracerStudy::findOrFail($id);
@@ -141,13 +140,19 @@ class KuesionerAlumniController extends Controller
 
         return response()->json(['message' => 'Data berhasil dihapus.']);
     }
+    public function showStudy($id)
+    {
+        $tracer = TracerStudy::with('alumni')->where('id_alumni', $id)->firstOrFail();
+
+        return view('alumni.tracer.study.detail-study', compact('tracer'));
+    }
     public function edit()
 {
     $user = auth()->user();
     $alumni = Alumni::where('id_users', $user->id)->first();
     $tracer = $alumni ? TracerStudy::where('id_alumni', $alumni->id)->first() : null;
 
-    return view('components.edit-kuesioner', compact('alumni', 'tracer'));
+    return view('alumni.tracer.study.edit-kuesioner', compact('alumni', 'tracer'));
 }
 public function update(Request $request, $id)
 {

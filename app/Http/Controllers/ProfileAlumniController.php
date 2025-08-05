@@ -12,7 +12,7 @@ class ProfileAlumniController extends Controller
     public function show()
     {
         $alumni = Auth::user()->alumni;
-        return view('components.profile', compact('alumni'));
+        return view('alumni.profile', compact('alumni'));
     }
 
 public function update(Request $request)

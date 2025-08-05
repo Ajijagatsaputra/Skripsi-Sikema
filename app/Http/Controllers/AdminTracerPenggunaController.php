@@ -8,7 +8,7 @@ use App\Models\tracer_pengguna;
 use App\Models\TracerPengguna;
 use Illuminate\Http\Request;
 
-class AdminTracerController extends Controller
+class AdminTracerPenggunaController extends Controller
 {
     /**
      * Menampilkan data tracer untuk admin
@@ -47,7 +47,7 @@ class AdminTracerController extends Controller
             ->orderBy('tahun', 'desc')
             ->pluck('tahun');
 
-        return view('tracer.table-salinan-pengguna', compact('data', 'prodis', 'tahuns','totalAlumni', 'sudahMengisi', 'belumMengisi'));
+        return view('admin.tracer.pengguna.table-salinan-pengguna', compact('data', 'prodis', 'tahuns','totalAlumni', 'sudahMengisi', 'belumMengisi'));
     }
 
     /**
@@ -56,7 +56,7 @@ class AdminTracerController extends Controller
     public function show($id)
     {
         $data = TracerPengguna::findOrFail($id);
-        return view('tracer.pengguna.detail-salinan-table', compact('data'));
+        return view('admin.tracer.pengguna.detail-salinan-table', compact('data'));
     }
 
     /**
@@ -65,7 +65,7 @@ class AdminTracerController extends Controller
     public function edit($id)
     {
         $data = TracerPengguna::findOrFail($id);
-        return view('tracer.pengguna.edit-salinan-table', compact('data'));
+        return view('admin.tracer.pengguna.edit-salinan-table', compact('data'));
     }
 
     /**

@@ -93,7 +93,7 @@ class HasilTracerController extends Controller
             ? round(($totalNilaiSeluruh / $nilaiMaksimal) * 100, 1)
             : 0;
 
-        return view('tracer.hasil', compact(
+        return view('admin.tracer.hasil', compact(
             'totalAlumni',
             'sudahMengisi',
             'belumMengisi',

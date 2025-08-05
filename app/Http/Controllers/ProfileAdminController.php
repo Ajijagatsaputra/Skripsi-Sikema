@@ -11,7 +11,7 @@ class ProfileAdminController extends Controller
     public function show()
     {
         $admin = Auth::user();
-        return view('components.profileadmin', compact('admin'));
+        return view('admin.profileadmin', compact('admin'));
     }
 
     public function update(Request $request)

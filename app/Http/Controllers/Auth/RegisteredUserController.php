@@ -66,6 +66,7 @@ class RegisteredUserController extends Controller
                 'id_users' => $user->id,
                 'nim' => $response->json()['data'][0]['nim'],
                 'nama_lengkap' => $response->json()['data'][0]['nama_lengkap'],
+                'no_hp' => $response->json()['data'][0]['no_whatsapp'],
                 'prodi' => $response->json()['data'][0]['prodi']['nama'],
                 'kelas' => $response->json()['data'][0]['kelas'],
                 'jalur' => $response->json()['data'][0]['jalur'],

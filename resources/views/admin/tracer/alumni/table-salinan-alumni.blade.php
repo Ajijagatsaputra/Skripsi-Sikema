@@ -84,16 +84,9 @@
                                 <th>#</th>
                                 <th>Tanggal Mengisi</th>
                                 <th>Nama Alumni</th>
-                                <th>Perusahaan</th>
-                                <th>Relevansi</th>
                                 <th>Status Pekerjaan</th>
                                 <th>Jabatan</th>
-                                <th>Gaji</th>
                                 <th>Alamat</th>
-                                <th>Saran</th>
-                                <th>Usaha</th>
-                                <th>Posisi Usaha</th>
-                                <th>Pendapatan Usaha</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -197,14 +190,6 @@
                         render: data => data ?? '-'
                     },
                     {
-                        data: 'nama_perusahaan',
-                        render: data => data || 'Belum diisi'
-                    },
-                    {
-                        data: 'relevansi_pekerjaan',
-                        render: data => data || '-'
-                    },
-                    {
                         data: 'bekerja',
                         render: data => data || '-'
                     },
@@ -213,30 +198,10 @@
                         render: data => data || '-'
                     },
                     {
-                        data: 'gaji',
-                        render: data => data || '-'
-                    },
-                    {
                         data: null,
                         render: function(data) {
                             return data.alamat_pekerjaan || data.alamat_usaha || '-';
                         }
-                    },
-                    {
-                        data: 'saran',
-                        render: data => data || '-'
-                    },
-                    {
-                        data: 'nama_usaha',
-                        render: data => data || '-'
-                    },
-                    {
-                        data: 'posisi_usaha',
-                        render: data => data || '-'
-                    },
-                    {
-                        data: 'pendapatan_usaha',
-                        render: data => data || '-'
                     },
                     {
                         data: null,

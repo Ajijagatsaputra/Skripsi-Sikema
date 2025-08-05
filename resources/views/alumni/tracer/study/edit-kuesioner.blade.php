@@ -6,7 +6,7 @@
     <!-- Panggil CSS di Folder Public -->
     <link rel="stylesheet" href="{{ asset('css/edit-kuesioner-tracer-study.css') }}">
     <body>
-        <div class="container questionnaire-container">
+        <div class="container questionnaire-container mb-3">
             <div class="header-section mb-4">
                 <h1>Edit Kuesioner Tracer Study</h1>
                 <p>Perbarui data tracer study alumni Anda dengan detail terbaru</p>

@@ -7,7 +7,7 @@ use App\Models\TracerStudy;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
-class TracerAlumniController extends Controller
+class AdminTracerStudyAlumniController extends Controller
 {
     // Menampilkan halaman dengan DataTables
     public function index()
@@ -59,7 +59,7 @@ class TracerAlumniController extends Controller
         }
 
         // Return ke view utama jika bukan request Ajax
-        return view('tracer.table-salinan-alumni', compact('totalAlumni', 'sudahMengisi', 'belumMengisi'));
+        return view('admin.tracer.alumni.table-salinan-alumni', compact('totalAlumni', 'sudahMengisi', 'belumMengisi'));
     }
 
 
@@ -80,11 +80,6 @@ class TracerAlumniController extends Controller
                 ->make(true);
         }
     }
-    public function show($id)
-    {
-        $data = TracerStudy::findOrFail($id);
-        return view('tracer.alumni.detail-salinan-table', compact('data'));
-    }
 
     /**
      * Menampilkan form edit data tracer
@@ -93,7 +88,7 @@ class TracerAlumniController extends Controller
     {
         $data = TracerStudy::findOrFail($id);
         $alumniList = \App\Models\Alumni::all();
-        return view('tracer.alumni.edit-salinan-table', compact('data', 'alumniList'));
+        return view('admin.tracer.alumni.edit-salinan-table', compact('data', 'alumniList'));
     }
 
     // Update

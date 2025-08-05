@@ -9,7 +9,7 @@ use App\Models\TracerStudy;
 use Illuminate\Http\Request;
 use PHPUnit\Event\Tracer\Tracer;
 
-class TracerStudyController extends Controller
+class KuesionerPenggunaController extends Controller
 {
     // Menampilkan semua data tracer
     public function index(Request $request)
@@ -32,14 +32,14 @@ class TracerStudyController extends Controller
         $user = auth()->user();
         $alumni = Alumni::where('id_users', $user->id)->first();
 
-        return view('components.kuesioner-pengguna', compact('data', 'alumni'));
+        return view('alumni.tracer.pengguna.kuesioner-pengguna', compact('data', 'alumni'));
     }
 
 
     // Menampilkan form input
     public function create()
     {
-        return view('components.kuesioner-pengguna');
+        return view('alumni.tracer.pengguna.kuesioner-pengguna');
     }
 
     // Menyimpan data baru
@@ -106,22 +106,15 @@ class TracerStudyController extends Controller
             return redirect()->route('tracer.kuesioner-pengguna');
         }
 
-        return view('alumni.detail-pengguna', compact('pengguna'));
+        return view('alumni.tracer.pengguna.detail-pengguna', compact('pengguna'));
     }
-    public function showStudy($id)
-    {
-        $tracer = TracerStudy::with('alumni')->where('id_alumni', $id)->firstOrFail();
-
-        return view('alumni.detail-study', compact('tracer'));
-    }
-
     // Menampilkan form edit
     public function edit($id)
     {
         $user = auth()->user();
         // Pastikan hanya data milik alumni yang login
         $data = TracerPengguna::where('user_id', $user->id)->findOrFail($id);
-        return view('components.edit-kuesioner-pengguna', compact('data'));
+        return view('alumni.tracer.pengguna.edit-kuesioner-pengguna', compact('data'));
     }
 
     public function update(Request $request, $id)

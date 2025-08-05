@@ -65,7 +65,7 @@ class HomeController extends Controller
         $hasFilledTracer = $alumni ? TracerStudy::where('id_alumni', $alumni->id)->exists() : false;
         $statusTracer = $hasFilledTracer ? 'sudah' : 'belum';
 
-        return view('main', compact('tahun', 'alumniData', 'kuisonerData', 'statusTracer'));
+        return view('alumni.main', compact('tahun', 'alumniData', 'kuisonerData', 'statusTracer'));
     }
 
 
