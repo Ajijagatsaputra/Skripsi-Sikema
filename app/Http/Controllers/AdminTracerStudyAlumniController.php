@@ -45,13 +45,11 @@ class AdminTracerStudyAlumniController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $editUrl = route('listtraceralumni.edit', $row->id);
-                    $deleteUrl = route('listtraceralumni.destroy', $row->id);
                     return '
-                    <a href="' . $editUrl . '" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
-                    <form action="' . $deleteUrl . '" method="POST" style="display:inline-block;" onsubmit="return confirm(\'Yakin ingin hapus?\')">
-                        ' . csrf_field() . method_field('DELETE') . '
-                        <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-                    </form>
+                     <a href="' . $editUrl . '" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+        <button type="button" class="btn btn-sm btn-danger btn-delete" data-id="' . $row->id . '">
+            <i class="fa fa-trash"></i>
+        </button>
                 ';
                 })
                 ->rawColumns(['action'])

@@ -8,7 +8,7 @@
 
             <!-- HEADER DETAIL STUDY -->
             <div class="mb-4">
-                <h1 class="h3 fw-bold text-dark mb-1">Detail Data Study</h1>
+                <h1 class="h3 fw-bold text-dark mb-1">Detail Data Tracer Study</h1>
                 <p class="text-muted mb-3">Menampilkan informasi detail data study</p>
                 <div class="d-flex gap-2">
                     <a href="{{ route('home') }}" class="btn btn-outline-secondary">Kembali</a>

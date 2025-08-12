@@ -49,7 +49,7 @@
                 <div class="row">
                     @php
                         $labels = [
-                            'Openness',
+                            'Keterbukaan',
                             'Conscientiousness',
                             'Extraversion',
                             'Agreebleness',

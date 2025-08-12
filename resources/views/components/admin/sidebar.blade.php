@@ -60,11 +60,11 @@
                                 <span class="nav-main-link-name">Data Mahasiswa</span>
                             </a>
                         </li>
-                        <li class="nav-main-item">
+                        {{-- <li class="nav-main-item">
                             <a class="nav-main-link" href="{{ route('listdosen') }}">
                                 <span class="nav-main-link-name">Data Dosen</span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
                 <li class="nav-main-heading">KELOLA TRACER </li>
@@ -77,17 +77,17 @@
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="{{ route('listtraceralumni.index') }}">
-                                <span class="nav-main-link-name">Alumni</span>
+                                <span class="nav-main-link-name">Tracer Study Alumni</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="{{ route('listtracerpengguna.index') }}">
-                                <span class="nav-main-link-name">Pengguna</span>
+                                <span class="nav-main-link-name">Tracer Study Pengguna</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link" href="{{ route('tracer.rekap') }}">
-                                <span class="nav-main-link-name">Hasil</span>
+                                <span class="nav-main-link-name">Hasil Survey Kompetensi Alumni</span>
                             </a>
                         </li>
                     </ul>

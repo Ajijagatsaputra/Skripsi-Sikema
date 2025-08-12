@@ -98,7 +98,7 @@
             <div class="col-md-6">
                 <label class="form-label">
                     <i class="fas fa-chart-line text-primary"></i>
-                    Pengembangan
+                    Pengembangan Diri
                 </label>
                 <select name="pengembangan" class="form-select" required>
                     <option value="" disabled selected>-- Pilih Level --</option>
@@ -213,7 +213,7 @@
             <div class="col-md-6">
                 <label class="form-label">
                     <i class="fas fa-chart-line text-primary"></i>
-                    Pengembangan
+                    Pengembangan Diri
                 </label>
                 <select name="pengembangan" class="form-select" required>
                     <option value="" disabled selected>-- Pilih Level --</option>
@@ -231,14 +231,14 @@
 <div class="section-card animate-fade-in"id="evaluasiPendidikan" style="display: none;">
     <div class="section-header">
         <i class="fas fa-graduation-cap"></i>
-        Evaluasi Pendidikan
+            Menurut Anda, seberapa besar penekanan pada metode pembelajaran yang dilaksanakan di prodi?
     </div>
     <div class="section-body">
-        <div class="alert"
+        {{-- <div class="alert"
             style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.05)); border-left: 4px solid var(--accent-color); color: var(--accent-color);">
             <i class="fas fa-info-circle me-2"></i>
             Menurut Anda, seberapa besar penekanan pada metode pembelajaran yang dilaksanakan di prodi?
-        </div>
+        </div> --}}
 
         <div class="row g-4">
             <div class="col-md-6">

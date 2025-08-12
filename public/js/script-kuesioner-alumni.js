@@ -49,129 +49,106 @@ function updateProgress() {
     }
 }
 
-// Show/hide sections berdasarkan status pekerjaan
-document.querySelectorAll('input[name="bekerja"]').forEach((radio) => {
-    radio.addEventListener("change", function () {
-        const detailPekerjaan = document.getElementById("detailPekerjaan");
-        const detailWirausaha = document.getElementById("detailWirausaha");
-        const detailLanjutStudy = document.getElementById("detailLanjutStudy");
-        const sectionCariKerja = document.getElementById("sectionCariKerja");
-        const kompetensiA = document.getElementById("kompetensiA");
-        const kompetensiB = document.getElementById("kompetensiB");
-        const bagian2 = document.getElementById(
-            "waktuAlumniMendapatkanPekerjaan"
-        );
-        const wiraswasta = document.getElementById("wiraswasta");
-        const lokasiPekerjaan = document.getElementById("lokasikerja");
-        const kesesuaianKerja = document.getElementById("kesesuaianPekerjaan");
-        const aktivitasSaatini = document.getElementById("aktivitasSaatIni");
-        const evaluasi = document.getElementById("evaluasiPendidikan");
-        const caramendapatkankerjaan = document.getElementById(
-            "caraMendapatkanPekerjaan"
-        );
+// Ambil semua elemen section terkait status kerja
+const sectionsMap = {
+    detailPekerjaan: document.getElementById("detailPekerjaan"),
+    detailWirausaha: document.getElementById("detailWirausaha"),
+    detailLanjutStudy: document.getElementById("detailLanjutStudy"),
+    sectionCariKerja: document.getElementById("sectionCariKerja"),
+    kompetensiA: document.getElementById("kompetensiA"),
+    kompetensiB: document.getElementById("kompetensiB"),
+    bagian2: document.getElementById("waktuAlumniMendapatkanPekerjaan"),
+    wiraswasta: document.getElementById("wiraswasta"),
+    lokasiPekerjaan: document.getElementById("lokasikerja"),
+    kesesuaianKerja: document.getElementById("kesesuaianPekerjaan"),
+    aktivitasSaatini: document.getElementById("aktivitasSaatIni"),
+    evaluasi: document.getElementById("evaluasiPendidikan"),
+    caramendapatkankerjaan: document.getElementById("caraMendapatkanPekerjaan"),
+};
 
-        // Sembunyikan semua detail section + cari kerja + kompetensi
-        [
-            detailPekerjaan,
-            detailWirausaha,
-            detailLanjutStudy,
-            sectionCariKerja,
-            kompetensiA,
-            kompetensiB,
-            bagian2,
-            wiraswasta,
-            lokasiPekerjaan,
-            kesesuaianKerja,
-            aktivitasSaatini,
-        ].forEach((section) => {
-            if (section) section.style.display = "none";
-        });
-
-        // Hapus required dan kosongkan nilai
-        [
-            detailPekerjaan,
-            detailWirausaha,
-            detailLanjutStudy,
-            sectionCariKerja,
-        ].forEach((section) => {
-            if (section) {
-                section.querySelectorAll("input, select").forEach((el) => {
-                    el.removeAttribute("required");
-                    el.value = "";
-                });
-            }
-        });
-
-        if (this.value === "bekerja_full") {
-            bagian2.style.display = "block";
-            lokasiPekerjaan.style.display = "block";
-            kesesuaianKerja.style.display = "block";
-            bagian2.querySelectorAll("input, select").forEach((el) => {
-                el.setAttribute("required", "required");
-            });
-            kompetensiA.style.display = "block";
-            kompetensiB.style.display = "block";
-            evaluasi.style.display = "block";
-            caramendapatkankerjaan.style.display = "block";
-            aktivitasSaatini.style.display = "block";
-            sectionCariKerja.style.display = "block";
-        } else if (this.value === "wirausaha") {
-            // detailWirausaha.style.display = "block";
-            bagian2.style.display = "block";
-            wiraswasta.style.display = "block";
-            kesesuaianKerja.style.display = "block";
-            lokasiPekerjaan.style.display = "block";
-            // detailWirausaha.querySelectorAll("input, select").forEach((el) => {
-            //     if (["nama_usaha", "posisi_usaha"].includes(el.name)) {
-            //         el.setAttribute("required", "required");
-            //     }
-            // });
-            bagian2.querySelectorAll("input, select").forEach((el) => {
-                el.setAttribute("required", "required");
-            });
-
-            wiraswasta.querySelectorAll("select, textarea").forEach((el) => {
-                if (
-                    [
-                        "posisi_usaha",
-                        "tingkat_usaha_level",
-                        "alamat_usaha",
-                    ].includes(el.name)
-                ) {
-                    el.setAttribute("required", "required");
-                }
-            });
-            kompetensiA.style.display = "block";
-            kompetensiB.style.display = "block";
-            evaluasi.style.display = "block";
-            caramendapatkankerjaan.style.display = "block";
-            aktivitasSaatini.style.display = "block";
-            sectionCariKerja.style.display = "block";
-        } else if (this.value === "lanjutstudy") {
-            detailLanjutStudy.style.display = "block";
-            detailLanjutStudy
-                .querySelectorAll("input, select")
+// Fungsi reset semua section ke kondisi awal
+function resetAllWorkSections() {
+    Object.values(sectionsMap).forEach((section) => {
+        if (section) {
+            section.style.display = "none";
+            section
+                .querySelectorAll("input, select, textarea")
                 .forEach((el) => {
-                    if (el.name === "universitas") {
-                        el.setAttribute("required", "required");
+                    el.removeAttribute("required");
+                    if (el.type === "radio" || el.type === "checkbox") {
+                        el.checked = false;
+                    } else {
+                        el.value = "";
                     }
                 });
-        } else if (this.value === "tidak") {
-            aktivitasSaatini.style.display = "block";
-            sectionCariKerja.style.display = "block";
-            sectionCariKerja.querySelectorAll("input, select").forEach((el) => {
-                el.setAttribute("required", "required");
-            });
-            aktivitasSaatini.querySelectorAll("input, select").forEach((el) => {
-                el.setAttribute("required", "required");
-            });
-            // Kompetensi tetap disembunyikan (tidak diapa-apakan di sini)
-        } else if (this.value === "belum_bekerja") {
-            aktivitasSaatini.style.display = "block";
-            aktivitasSaatini.querySelectorAll("input, select").forEach((el) => {
-                el.setAttribute("required", "required");
-            });
         }
+    });
+}
+
+// Fungsi set visible + required untuk section tertentu
+function showSection(section, requiredFields = []) {
+    if (section) {
+        section.style.display = "block";
+        section.querySelectorAll("input, select, textarea").forEach((el) => {
+            if (
+                requiredFields.length === 0 ||
+                requiredFields.includes(el.name)
+            ) {
+                el.setAttribute("required", "required");
+            }
+        });
+    }
+}
+
+// Event listener untuk perubahan status bekerja
+document.querySelectorAll('input[name="bekerja"]').forEach((radio) => {
+    radio.addEventListener("change", function () {
+        resetAllWorkSections(); // Selalu reset semua section sebelum tampilkan yang baru
+
+        switch (this.value) {
+            case "bekerja_full":
+                showSection(sectionsMap.bagian2, []); // Semua input di bagian ini required
+                showSection(sectionsMap.lokasiPekerjaan);
+                showSection(sectionsMap.kesesuaianKerja);
+                showSection(sectionsMap.kompetensiA);
+                showSection(sectionsMap.kompetensiB);
+                showSection(sectionsMap.evaluasi);
+                showSection(sectionsMap.caramendapatkankerjaan);
+                showSection(sectionsMap.aktivitasSaatini);
+                showSection(sectionsMap.sectionCariKerja);
+                break;
+
+            case "wirausaha":
+                showSection(sectionsMap.bagian2);
+                showSection(sectionsMap.wiraswasta, [
+                    "posisi_usaha",
+                    "tingkat_usaha_level",
+                    "alamat_usaha",
+                ]);
+                showSection(sectionsMap.kesesuaianKerja);
+                showSection(sectionsMap.lokasiPekerjaan);
+                showSection(sectionsMap.kompetensiA);
+                showSection(sectionsMap.kompetensiB);
+                showSection(sectionsMap.evaluasi);
+                showSection(sectionsMap.caramendapatkankerjaan);
+                showSection(sectionsMap.aktivitasSaatini);
+                showSection(sectionsMap.sectionCariKerja);
+                break;
+
+            case "lanjutstudy":
+                showSection(sectionsMap.detailLanjutStudy, ["universitas"]);
+                break;
+
+            case "tidak":
+                showSection(sectionsMap.aktivitasSaatini);
+                showSection(sectionsMap.sectionCariKerja);
+                break;
+
+            case "belum_bekerja":
+                showSection(sectionsMap.aktivitasSaatini);
+                break;
+        }
+
         updateProgress();
     });
 });
